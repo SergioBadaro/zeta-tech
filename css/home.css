@@ -263,6 +263,7 @@ header.scrolled {
   justify-content: space-around;
   align-items: center;
   gap: 20px;
+  padding: 2rem;
 }
 
 .about-text {
@@ -304,23 +305,7 @@ li {
   font-size: 20px;
   line-height: 1.5;
   color: #000000;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .about-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .about-text {
-    width: 100%;
-    text-align: center;
-  }
-
-  .about-banner img {
-    width: 80%;
-  }
+  list-style: none;
 }
 
 /* Services Section */
@@ -579,8 +564,27 @@ footer p {
   font-size: 14px;
 }
 
-/* Responsiveness */
+/* Responsividade */
 @media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .about-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-text li {
+    list-style: none;
+    margin: 1rem;
+  }
+
+  .about-banner img {
+    width: 80%;
+  }
   .services-container {
     flex-direction: column;
     align-items: center;
@@ -590,10 +594,66 @@ footer p {
     width: 80%;
     margin-bottom: 20px;
   }
+
+  .faq-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 /* Responsivo */
-@media (max-width: 1023px) {
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  #menu {
+    display: none;
+    flex-direction: column;
+    background-color: #ffffff;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  #menu.active {
+    display: flex;
+  }
+
+  #hamburger {
+    display: block;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .about-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-text li {
+    list-style: none;
+    margin: 1rem;
+  }
+
+  .about-banner img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #video-top {
+    display: none;
+  }
+
+  #image-landing {
+    display: block;
+  }
+
   #menu {
     display: none;
     flex-direction: column;
@@ -615,18 +675,21 @@ footer p {
   }
 }
 
-@media (max-width: 767px) {
-  #video-top {
-    display: none;
-  }
-
-  #image-landing {
-    display: block;
-  }
-}
-
 @media (min-width: 768px) {
   #image-landing {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1023px) and (max-width: 1500px) {
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .about-text li {
+    list-style: none;
+    margin: 1rem;
   }
 }
