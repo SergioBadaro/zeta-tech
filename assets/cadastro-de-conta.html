@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/img/1-1fc355c9.ico" type="image/x-icon">
+
+    <title> Zeta Tech - Cadastre-se </title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="left">
+            <h1 class="title">Zeta Tech </h1>
+            <h1>O melhor <strong>SOFTWARE</strong> de controle e soluções de chamados para você e sua equipe</h1>
+        </div>
+        <div class="right">
+            <form id="registerForm">
+                <label for="name">Nome Completo: </label>
+                <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
+
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+
+                <label for="password">Senha: </label>
+                <input type="password" id="password" name="password" placeholder="Criar senha" required>
+
+                <label for="phone">Telefone: </label>
+                <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">Aceitar os <a href="/assets/politica-termos.html" target="_blank"> termos de
+                            política e
+                            privacidade</a></label>
+                </div>
+
+                <button type="submit">Criar Conta</button>
+
+                <div class="social-login">
+                    <p>Ou cadastre-se com:</p>
+                    <button type="button" class="google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button type="button" class="linkedin">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </button>
+                </div>
+
+                <!-- Adicionando a opção de login abaixo do LinkedIn -->
+                <div class="login-option">
+                    <p>Já tem conta? <a href="/assets/login-de-usuario.html">Clique aqui e faça login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

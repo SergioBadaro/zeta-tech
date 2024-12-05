@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/abertura-de-chamados.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/assets/img/1-1fc355c9.ico" type="image/x-icon">
+
+    <title> Zeta Tech - Abrir chamado</title>
+</head>
+
+<body>
+    <!-- Menu lateral -->
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="/assets/img/logo - zeta tech.jpg" id="logo_img" alt="Logotipo">
+                <p id="user_infos">
+                    <span class="item-description">Zeta Tech</span>
+                    <span class="item-description">Soluções e Tecnologia</span>
+                </p>
+            </div>
+            <ul id="side_items">
+                <li class="side-item">
+                    <a href="/assets/index.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="item-description">Dashboard</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="/assets/perfil-usuario.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="item-description">Meu perfil</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="#">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="item-description">Notificações</span>
+                    </a>
+                </li>
+                <li class="side-item active">
+                    <a href="/assets/abrir-chamado.html">
+                        <i class="fas fa-phone"></i>
+                        <span class="item-description">Abrir Chamado</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="/assets/chamados.html">
+                        <i class="fas fa-headset"></i>
+                        <span class="item-description">Chamados</span>
+                    </a>
+                </li>
+                <li class="side-item">
+                    <a href="#">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="item-description">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+        <div id="logout">
+            <button id="logout_btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="item-description">Logout</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Formulário de abertura de chamado -->
+    <div class="form-container" id="formContainer">
+        <h2>Abertura de Chamado</h2>
+        <form id="callForm">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
+            <label for="phone">Telefone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+            <label for="problem">Descreva o problema:</label>
+            <textarea id="problem" name="problem" rows="4" placeholder="Descreva seu problema..." required></textarea>
+            <label for="date">Data de Abertura:</label>
+            <input type="date" id="date" name="date" required>
+            <button type="submit">Salvar Chamado</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>Chamado salvo com sucesso!</h3>
+            <div class="modal-buttons">
+                <button id="newCallModalBtn" onclick="window.location.href='/assets/abrir-chamado.html'">Abrir Novo
+                    Chamado</button>
+                <button id="goToViewCallsBtn" onclick="window.location.href='/assets/chamados.html'">
+                    Conferir Chamados
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/abrir-chamado.js"></script>
+</body>
+
+</html>

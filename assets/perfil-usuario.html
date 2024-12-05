@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/perfil-usuario.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/assets/img/1-1fc355c9.ico" type="image/x-icon">
+
+    <title> Zeta Tech - Meu Perfil</title>
+</head>
+
+<body>
+
+    <div class="layout-container">
+        <nav id="sidebar">
+            <!-- Conteúdo do menu lateral -->
+            <div id="sidebar_content">
+                <div id="user">
+                    <img src="/assets/img/logo - zeta tech.jpg" id="logo_img" alt="Logotipo">
+
+                    <p id="user_infos">
+                        <span id="title-zeta" class="item-description">
+                            Zeta Tech
+                        </span>
+                        <span class="item-description">
+                            Soluções e Tecnologia
+                        </span>
+                    </p>
+                </div>
+
+                <ul id="side_items">
+                    <li class="side-item">
+                        <a href="/assets/index.html">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span class="item-description">
+                                Dashboard
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side-item active">
+                        <a href="/assets/perfil-usuario.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="item-description">
+                                Meu perfil
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side-item">
+                        <a href="#">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="item-description">
+                                Notificações
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side-item">
+                        <a href="/assets/abrir-chamado.html">
+                            <i class="fas fa-phone"></i>
+                            <span class="item-description">
+                                Abrir Chamado
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side-item">
+                        <a href="/assets/chamados.html">
+                            <i class="fas fa-headset"></i>
+                            <span class="item-description">
+                                Chamados
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="side-item">
+                        <a href="#">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description">
+                                Configurações
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+
+                <button id="open_btn">
+                    <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div id="logout">
+                <button id="logout_btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="item-description">
+                        Logout
+                    </span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="profile-container">
+                <div class="form-group">
+                    <img src="/assets/img/logo - zeta tech.jpg" alt="Foto de Perfil" id="profilePicture">
+                    <button type="button" onclick="alterarFoto()">Alterar Foto</button>
+                </div>
+
+                <h2>Editar Perfil</h2>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Digite seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="Digite seu e-mail">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" placeholder="Digite seu telefone">
+                    </div>
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" placeholder="Digite seu CPF">
+                    </div>
+                    <div class="form-group">
+                        <label for="nascimento">Data de Nascimento</label>
+                        <input type="date" id="nascimento">
+                    </div>
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo">
+                            <option value="">Selecione</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" placeholder="Digite sua cidade">
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input type="text" id="estado" placeholder="Digite seu estado">
+                    </div>
+                    <div class="form-group">
+                        <label for="pais">País</label>
+                        <input type="text" id="pais" placeholder="Digite seu país">
+                    </div>
+
+                    <button type="submit" class="save-btn">Salvar Alterações</button>
+                </form>
+                <p class="success-message" id="successMessage">Alterações salvas com sucesso!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/js/perfil-usuario.js"></script>
+
+</body>
+
+</html>
