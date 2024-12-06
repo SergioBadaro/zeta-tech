@@ -643,6 +643,10 @@ footer p {
   .about-banner img {
     width: 100%;
   }
+
+  .buttons .but {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -673,6 +677,57 @@ footer p {
   #hamburger {
     display: block;
   }
+
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo */
+  }
+
+  .form-container .buttons {
+    margin-top: 20px; /* Espaço entre o formulário e os botões */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaço entre os botões */
+    width: 100%; /* Os botões ocupam a largura do container */
+  }
+
+  .form-container .but {
+    width: 100%; /* Cada botão ocupa toda a largura disponível */
+    text-align: center; /* Centraliza o texto dos botões */
+  }
+
+  .buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .buttons .but {
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin: 1rem;
+  }
+
+  .buttons .login-but {
+    background-color: #4f46e5;
+  }
+
+  .buttons .login-but:hover {
+    background-color: #3e3d67;
+  }
+
+  .buttons .register-but {
+    background-color: #28a745;
+  }
+
+  .buttons .register-but:hover {
+    background-color: #218838;
+  }
 }
 
 @media (min-width: 768px) {
@@ -691,5 +746,9 @@ footer p {
   .about-text li {
     list-style: none;
     margin: 1rem;
+  }
+
+  .but {
+    display: none;
   }
 }
