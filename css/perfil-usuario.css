@@ -13,7 +13,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .layout-container {
@@ -34,7 +33,7 @@ body {
   padding: 35px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
 }
 
@@ -84,13 +83,13 @@ body {
 
 input {
   border: 1px solid #454488;
-  box-shadow: 0 0 5px rgba(49, 42, 189, 0.5);
+  box-shadow: 0 0 6px rgba(49, 42, 189, 0.5);
   outline: none;
 }
 
 input:focus {
   border: 1px solid #454488;
-  box-shadow: 0 0 5px rgba(49, 42, 189, 0.5);
+  box-shadow: 0 0 px rgba(49, 42, 189, 0.5);
   outline: none;
 }
 
@@ -122,7 +121,6 @@ select {
   flex-direction: column;
   justify-content: space-between;
   background-color: #ffffff;
-  height: 100vh;
   border-radius: 0px 18px 18px 0px;
   position: relative;
   transition: all 0.5s;
@@ -262,33 +260,4 @@ select {
 #sidebar.open-sidebar .side-item a {
   justify-content: flex-start;
   gap: 14px;
-}
-
-/* Footer */
-footer {
-  background-color: #4f46e5;
-  padding: 10px;
-  color: #fff;
-  text-align: center;
-}
-
-footer .footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 10px;
-}
-
-footer .footer-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-footer .footer-links a:hover {
-  color: #c09be8;
-}
-
-footer p {
-  font-size: 14px;
 }
