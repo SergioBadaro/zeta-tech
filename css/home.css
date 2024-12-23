@@ -606,7 +606,7 @@ footer p {
 @media screen and (min-width: 769px) and (max-width: 1023px) {
   #menu {
     display: none;
-    flex-direction: column;
+    flex-wrap: wrap;
     background-color: #ffffff;
     position: absolute;
     top: 60px;
@@ -632,6 +632,11 @@ footer p {
 
   .about-text {
     width: 100%;
+    text-align: center;
+  }
+
+  .about-text h2,
+  h3 {
     text-align: center;
   }
 
@@ -736,10 +741,10 @@ footer p {
   }
 }
 
-@media screen and (min-width: 1023px) and (max-width: 1500px) {
+@media (min-width: 1023px) {
   .about-content {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     padding: 1rem;
   }
 
@@ -748,7 +753,12 @@ footer p {
     margin: 1rem;
   }
 
-  .but {
+  .buttons {
     display: none;
+  }
+
+  .about-text h2,
+  h3 {
+    text-align: center;
   }
 }
