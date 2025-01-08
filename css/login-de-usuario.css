@@ -164,38 +164,3 @@ button i {
 .register-link a:hover {
   text-decoration: underline;
 }
-
-/* Footer */
-footer {
-  background-color: #4f46e5;
-  padding: 4px;
-  color: #fff;
-  text-align: center;
-  width: 100%;
-}
-
-footer .footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-}
-
-footer .footer-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-footer .footer-links a:hover {
-  color: #c09be8;
-}
-
-footer p {
-  font-size: 14px;
-}
-
-@media (max-width: 1023px) {
-  .container .left {
-    display: none;
-  }
-}
