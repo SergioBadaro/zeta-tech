@@ -1,86 +1,119 @@
-window.addEventListener("scroll", function () {
-  const header = document.querySelector("header");
-  const logo = document.querySelector(".logo img");
+﻿const header = document.getElementById("header");
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+const navLinks = document.querySelectorAll("#menu li a");
+const typewriterText = document.getElementById("typewriter-text");
+const contactForm = document.getElementById("contact-form");
+const successMessage = document.querySelector(".success-message");
 
-  // Detecta a posição da rolagem
-  if (window.scrollY > 100) {
-    header.classList.add("scrolled"); // Aplica a classe para estilo reduzido
-    logo.classList.add("hidden"); // Esconde a logo
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 80) {
+    header.classList.add("scrolled");
   } else {
     header.classList.remove("scrolled");
-    logo.classList.remove("hidden"); // Mostra a logo novamente
   }
 });
 
-document.querySelectorAll(".faq-question").forEach((button) => {
-  button.addEventListener("click", () => {
-    const answer = button.nextElementSibling;
+hamburger.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
 
-    // Toggle visibility
-    answer.style.display = answer.style.display === "block" ? "none" : "block";
-
-    // Collapse other answers
-    document.querySelectorAll(".faq-answer").forEach((otherAnswer) => {
-      if (otherAnswer !== answer) {
-        otherAnswer.style.display = "none";
-      }
-    });
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    menu.classList.remove("active");
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const typewriter = document.getElementById("typewriter-text");
-  const text = "Bem-vindo à Zeta Tech"; // Texto a ser digitado
-  let index = 0;
+const phrases = [
+  "Transforme seu suporte com a Zeta Tech",
+  "Controle completo dos seus chamados",
+  "Atendimento rápido e seguro para sua empresa",
+];
+let phraseIndex = 0;
+let characterIndex = 0;
+let isDeleting = false;
 
-  // Remove o texto inicial do h1 antes de iniciar o efeito
-  typewriter.textContent = "";
+function writeTypewriter() {
+  const currentPhrase = phrases[phraseIndex];
+  const displayedText = currentPhrase.substring(0, characterIndex);
 
-  function typeWriterEffect() {
-    if (index < text.length) {
-      typewriter.textContent += text.charAt(index); // Adiciona o próximo caractere
-      index++;
-      setTimeout(typeWriterEffect, 150); // Velocidade da digitação
+  if (typewriterText) {
+    typewriterText.textContent = displayedText;
+  }
+
+  if (!isDeleting && characterIndex < currentPhrase.length) {
+    characterIndex++;
+    setTimeout(writeTypewriter, 90);
+  } else if (isDeleting && characterIndex > 0) {
+    characterIndex--;
+    setTimeout(writeTypewriter, 40);
+  } else {
+    if (!isDeleting) {
+      isDeleting = true;
+      setTimeout(writeTypewriter, 1800);
     } else {
-      // Após completar o texto, reinicia o efeito
-      setTimeout(() => {
-        typewriter.textContent = ""; // Limpa o texto
-        index = 0; // Reinicia o índice
-        typeWriterEffect(); // Chama novamente o efeito
-      }, 2000); // Pausa antes de reiniciar (2 segundos no exemplo)
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      setTimeout(writeTypewriter, 200);
     }
   }
+}
 
-  // Inicia o efeito
-  typeWriterEffect();
-});
+if (typewriterText) {
+  writeTypewriter();
+}
 
-document.addEventListener("DOMContentLoaded", function () {
-  const elements = document.querySelectorAll(".fade-in");
+function revealOnScroll() {
+  document.querySelectorAll(".fade-in").forEach((element) => {
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
-  function handleScroll() {
-    elements.forEach((element) => {
-      const rect = element.getBoundingClientRect();
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top < windowHeight - 100) {
+      element.classList.add("visible");
+    }
+  });
+}
 
-      // Verifica se o elemento está visível
-      if (rect.top < windowHeight && rect.bottom > 0) {
-        element.classList.add("visible");
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+function setupFaq() {
+  document.querySelectorAll(".faq-question").forEach((button) => {
+    button.addEventListener("click", () => {
+      const answer = button.nextElementSibling;
+      const isOpen = answer.classList.contains("open");
+
+      document.querySelectorAll(".faq-answer").forEach((item) => {
+        item.classList.remove("open");
+        item.style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        answer.classList.add("open");
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
       }
     });
-  }
-
-  // Executa no carregamento e ao rolar
-  window.addEventListener("scroll", handleScroll);
-  handleScroll(); // Executa imediatamente para elementos já visíveis
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.getElementById("hamburger");
-  const menu = document.getElementById("menu");
-
-  hamburger.addEventListener("click", () => {
-    menu.classList.toggle("active");
   });
-});
+}
+
+function initializeFaqAnswers() {
+  document.querySelectorAll(".faq-answer").forEach((answer) => {
+    answer.style.maxHeight = null;
+  });
+}
+
+setupFaq();
+initializeFaqAnswers();
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    contactForm.reset();
+    if (successMessage) {
+      successMessage.classList.add("visible");
+      setTimeout(() => {
+        successMessage.classList.remove("visible");
+      }, 4500);
+    }
+  });
+}

@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("user"); // Aqui você remove os dados de login
 
     // Opcional: Redirecionar o usuário para a página de login ou página pública
-    window.location.href = "/assets/login-de-usuario.html"; // Ou a URL da sua página de login
+    window.location.href = "/assets/Login/login-de-usuario.html"; // Ou a URL da sua página de login
   }
 
   // Adiciona o evento de clique no botão de logout
