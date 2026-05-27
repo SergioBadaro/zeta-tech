@@ -226,7 +226,7 @@ header {
 
 .button-secondary,
 .contact-details-card .button-secondary {
-  background: rgba(255, 255, 255, 0.16);
+  background: #7b4fe0;
   color: #f8f5ff;
   border: 1px solid rgba(255, 255, 255, 0.22);
 }
