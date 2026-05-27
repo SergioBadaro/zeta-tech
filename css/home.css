@@ -13,7 +13,7 @@ html {
 
 body {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f5f3ff 0%, #edf2fe 100%);
+  background: linear-gradient(180deg, #f5f3ff 0%, #e0e7f8 100%);
   color: #1d1b38;
 }
 
@@ -397,7 +397,7 @@ header {
   border-radius: 24px;
   padding: 30px;
   border: 1px solid #ece9f8;
-  box-shadow: 0 14px 35px rgba(92, 82, 170, 0.08);
+  box-shadow: 0 14px 35px rgba(90, 82, 170, 0.08);
 }
 
 .differential-item h3 {
