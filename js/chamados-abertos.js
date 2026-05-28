@@ -104,6 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
     calls[index].completed = true;
     calls[index].status = "concluído";
     localStorage.setItem("calls", JSON.stringify(calls));
+    window.dispatchEvent(
+      new CustomEvent("callsUpdated", {
+        detail: {
+          action: "completed",
+          call: calls[index],
+        },
+      })
+    );
 
     cardElement.classList.remove("pending");
     cardElement.classList.add("completed");
@@ -118,8 +126,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function deleteCall(index) {
     const calls = JSON.parse(localStorage.getItem("calls") || "[]");
+    const removedCall = calls[index];
     calls.splice(index, 1);
     localStorage.setItem("calls", JSON.stringify(calls));
+    window.dispatchEvent(
+      new CustomEvent("callsUpdated", {
+        detail: {
+          action: "deleted",
+          call: removedCall,
+        },
+      })
+    );
     loadCalls();
   }
 

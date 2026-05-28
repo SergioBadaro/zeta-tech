@@ -13,7 +13,7 @@ form.addEventListener("submit", function (event) {
   const createdAt = new Date().toISOString();
   const slaDate = calculateSLA(document.getElementById("date").value);
 
-  calls.push({
+  const newCall = {
     name: document.getElementById("name").value,
     phone: document.getElementById("phone").value,
     email: document.getElementById("email").value,
@@ -23,9 +23,19 @@ form.addEventListener("submit", function (event) {
     createdAt: createdAt,
     status: "pendente",
     completed: false,
-  });
+  };
+
+  calls.push(newCall);
 
   localStorage.setItem("calls", JSON.stringify(calls));
+  window.dispatchEvent(
+    new CustomEvent("callsUpdated", {
+      detail: {
+        action: "created",
+        call: newCall,
+      },
+    })
+  );
   modal.style.display = "flex";
   form.reset();
 });
