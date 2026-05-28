@@ -1,0 +1,119 @@
+body {
+    --page-bg: #e3e9f7;
+    --page-surface: rgba(255, 255, 255, 0.72);
+    --surface-soft: rgba(79, 70, 229, 0.06);
+    --surface-border: rgba(79, 70, 229, 0.12);
+    --text-primary: #1f2550;
+    --text-secondary: #5f6182;
+    --accent: #4f46e5;
+    --accent-strong: #3627b3;
+    --shadow: 0 18px 48px rgba(36, 32, 84, 0.12);
+    --sidebar-bg: rgba(255, 255, 255, 0.96);
+    --sidebar-text: #1f2550;
+    --card-soft: rgba(255, 255, 255, 0.78);
+    --toggle-bg: rgba(79, 70, 229, 0.12);
+    --success: #1f7a3d;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+body[data-theme="dark"] {
+    --page-bg: #030712;
+    --page-surface: rgba(9, 13, 29, 0.88);
+    --surface-soft: rgba(79, 70, 229, 0.14);
+    --surface-border: rgba(121, 131, 218, 0.18);
+    --text-primary: #f5f7ff;
+    --text-secondary: #b7bddf;
+    --accent: #8b84ff;
+    --accent-strong: #5b4bff;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.42);
+    --sidebar-bg: rgba(8, 12, 26, 0.92);
+    --sidebar-text: #f5f7ff;
+    --card-soft: rgba(10, 15, 32, 0.78);
+    --toggle-bg: rgba(139, 132, 255, 0.18);
+    --success: #5de79d;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--page-bg);
+    color: var(--text-primary);
+}
+
+body[data-theme="dark"] #sidebar {
+    background: var(--sidebar-bg);
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.38);
+}
+
+body[data-theme="dark"] #sidebar .side-item a,
+body[data-theme="dark"] #user_infos,
+body[data-theme="dark"] #logout_btn,
+body[data-theme="dark"] .item-description,
+body[data-theme="dark"] .dashboard-header,
+body[data-theme="dark"] .summary-card,
+body[data-theme="dark"] .panel,
+body[data-theme="dark"] .settings-panel,
+body[data-theme="dark"] .settings-footer,
+body[data-theme="dark"] .executive-panel,
+body[data-theme="dark"] .dashboard-shell,
+body[data-theme="dark"] .dashboard-header h1,
+body[data-theme="dark"] .dashboard-subtitle,
+body[data-theme="dark"] .summary-label,
+body[data-theme="dark"] .summary-value,
+body[data-theme="dark"] .panel-kicker,
+body[data-theme="dark"] .panel h2,
+body[data-theme="dark"] .panel h3,
+body[data-theme="dark"] .setting-row h3,
+body[data-theme="dark"] .setting-field label,
+body[data-theme="dark"] .executive-lead,
+body[data-theme="dark"] .executive-stat-copy,
+body[data-theme="dark"] .executive-list li,
+body[data-theme="dark"] .executive-stat-card strong,
+body[data-theme="dark"] .footer-copy p,
+body[data-theme="dark"] .footer-copy li {
+    color: var(--text-primary);
+}
+
+body[data-theme="dark"] .summary-label,
+body[data-theme="dark"] .panel-kicker,
+body[data-theme="dark"] .setting-field label,
+body[data-theme="dark"] .executive-stat-label,
+body[data-theme="dark"] .footer-copy p,
+body[data-theme="dark"] .footer-copy li,
+body[data-theme="dark"] .setting-row p,
+body[data-theme="dark"] .executive-stat-copy {
+    color: var(--text-secondary);
+}
+
+body[data-theme="dark"] .dashboard-header,
+body[data-theme="dark"] .summary-card,
+body[data-theme="dark"] .panel,
+body[data-theme="dark"] .settings-panel,
+body[data-theme="dark"] .settings-footer,
+body[data-theme="dark"] .executive-panel,
+body[data-theme="dark"] .executive-stat-card {
+    background: var(--page-surface);
+    border-color: var(--surface-border);
+    box-shadow: var(--shadow);
+}
+
+body[data-theme="dark"] .side-item:hover:not(.active),
+body[data-theme="dark"] #logout_btn:hover {
+    background-color: rgba(79, 70, 229, 0.18);
+}
+
+body[data-theme="dark"] .setting-row,
+body[data-theme="dark"] .setting-field,
+body[data-theme="dark"] .executive-stat-card {
+    background: var(--surface-soft);
+    border-color: var(--surface-border);
+}
+
+body[data-theme="dark"] .theme-toggle,
+body[data-theme="dark"] .secondary-action {
+    background: var(--toggle-bg);
+}
+
+body[data-theme="dark"] .footer-copy li i,
+body[data-theme="dark"] .executive-list i {
+    color: var(--success);
+}

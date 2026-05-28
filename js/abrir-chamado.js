@@ -6,17 +6,29 @@ document.getElementById("open_btn").addEventListener("click", function () {
 // chamado.js
 const form = document.getElementById("callForm");
 const modal = document.getElementById("modal");
+const dateInput = document.getElementById("date");
+
+function setCurrentDate() {
+  const today = new Date();
+  const formattedDate = today.toISOString().split("T")[0];
+  dateInput.value = formattedDate;
+}
+
+setCurrentDate();
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   const calls = JSON.parse(localStorage.getItem("calls") || "[]");
   const createdAt = new Date().toISOString();
-  const slaDate = calculateSLA(document.getElementById("date").value);
+  const slaDate = calculateSLA(dateInput.value);
 
   const newCall = {
     name: document.getElementById("name").value,
     phone: document.getElementById("phone").value,
     email: document.getElementById("email").value,
+    category: document.getElementById("category").value,
+    priority: document.getElementById("priority").value,
+    subject: document.getElementById("subject").value,
     problem: document.getElementById("problem").value,
     date: slaDate,
     slaDate: slaDate,
@@ -38,6 +50,7 @@ form.addEventListener("submit", function (event) {
   );
   modal.style.display = "flex";
   form.reset();
+  setCurrentDate();
 });
 
 function calculateSLA(dateString) {

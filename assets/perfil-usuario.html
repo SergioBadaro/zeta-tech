@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/perfil-usuario.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -80,7 +81,7 @@
                     </li>
 
                     <li class="side-item">
-                        <a href="#">
+                        <a href="/assets/configuracoes.html">
                             <i class="fa-solid fa-gear"></i>
                             <span class="item-description">
                                 Configurações
@@ -105,63 +106,120 @@
         </nav>
 
         <div class="content">
-            <div class="profile-container">
-                <div class="form-group">
-                    <img src="/assets/img/logo - zeta tech.jpg" alt="Foto de Perfil" id="profilePicture">
-                    <input type="file" id="photoUpload" accept="image/*" hidden>
-                    <button type="button" onclick="alterarFoto()">Selecionar Foto</button>
-                </div>
-
-                <h2>Editar Perfil</h2>
-                <form id="profileForm">
-                    <div class="form-group">
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" placeholder="Digite seu nome completo">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" placeholder="Digite seu e-mail">
-                    </div>
-                    <div class="form-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" placeholder="Digite seu telefone">
-                    </div>
-                    <div class="form-group">
-                        <label for="cpf">CPF</label>
-                        <input type="text" id="cpf" placeholder="Digite seu CPF">
-                    </div>
-                    <div class="form-group">
-                        <label for="nascimento">Data de Nascimento</label>
-                        <input type="date" id="nascimento">
-                    </div>
-                    <div class="form-group">
-                        <label for="sexo">Sexo</label>
-                        <select id="sexo">
-                            <option value="">Selecione</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Feminino">Feminino</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" placeholder="Digite sua cidade">
-                    </div>
-                    <div class="form-group">
-                        <label for="estado">Estado</label>
-                        <input type="text" id="estado" placeholder="Digite seu estado">
-                    </div>
-                    <div class="form-group">
-                        <label for="pais">País</label>
-                        <input type="text" id="pais" placeholder="Digite seu país">
+            <section class="profile-shell">
+                <article class="profile-summary-panel">
+                    <div class="summary-header">
+                        <div class="avatar-ring">
+                            <img src="/assets/img/logo - zeta tech.jpg" alt="Foto de perfil" id="profilePicture">
+                        </div>
+                        <div>
+                            <p class="eyebrow">Conta corporativa</p>
+                            <h1>Meu perfil</h1>
+                            <p class="summary-copy">Atualize as informações essenciais para manter o contato da equipe e o acesso ao suporte.</p>
+                        </div>
                     </div>
 
-                    <button type="submit" class="save-btn">Salvar Alterações</button>
-                </form>
-                <p class="success-message" id="successMessage">Alterações salvas com sucesso!</p>
-            </div>
+                    <div class="summary-grid">
+                        <div class="mini-stat-card">
+                            <div class="mini-stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <p class="mini-stat-label">Status da conta</p>
+                                <strong class="mini-stat-value">Ativa e verificada</strong>
+                            </div>
+                        </div>
+
+                        <div class="mini-stat-card">
+                            <div class="mini-stat-icon"><i class="fa-solid fa-clock"></i></div>
+                            <div>
+                                <p class="mini-stat-label">Atualização</p>
+                                <strong class="mini-stat-value">Sempre alinhado</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-contact-list">
+                        <div class="summary-contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <p class="contact-label">E-mail corporativo</p>
+                                <p class="contact-value" id="summaryEmail">contato@zeta-tech.com</p>
+                            </div>
+                        </div>
+
+                        <div class="summary-contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <p class="contact-label">Telefone</p>
+                                <p class="contact-value" id="summaryPhone">(11) 99999-0000</p>
+                            </div>
+                        </div>
+
+                        <div class="summary-contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-building"></i></div>
+                            <div>
+                                <p class="contact-label">Organização</p>
+                                <p class="contact-value">Zeta Tech</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <section class="profile-editor-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Dados pessoais</p>
+                            <h2>Informações da conta</h2>
+                        </div>
+                        <p class="panel-copy">Mantenha apenas os dados essenciais atualizados para o atendimento e comunicação.</p>
+                    </div>
+
+                    <form id="profileForm" class="profile-form-grid">
+                        <div class="avatar-block">
+                            <div class="avatar-preview">
+                                <img src="/assets/img/logo - zeta tech.jpg" alt="Foto de Perfil" id="profilePicturePreview">
+                            </div>
+                            <div class="avatar-copy">
+                                <h3>Foto de perfil</h3>
+                                <p>Envie uma imagem para personalizar sua conta de acesso.</p>
+                            </div>
+                            <input type="file" id="photoUpload" accept="image/*" hidden>
+                            <button type="button" class="secondary-btn" onclick="alterarFoto()">Alterar foto</button>
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="form-field">
+                                <label for="nome">Nome completo</label>
+                                <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Digite o nome completo">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="email">E-mail corporativo</label>
+                                <input type="email" id="email" name="email" autocomplete="email" placeholder="Digite o e-mail">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="telefone">Telefone</label>
+                                <input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="Digite o telefone">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="cargo">Cargo</label>
+                                <input type="text" id="cargo" name="cargo" placeholder="Ex.: Analista de Suporte">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">Salvar alterações</button>
+                        </div>
+                    </form>
+
+                    <p class="success-message" id="successMessage">Alterações salvas com sucesso!</p>
+                </section>
+            </section>
         </div>
     </div>
 
+    <script src="/js/theme.js"></script>
     <script src="/js/perfil-usuario.js"></script>
 
 </body>
