@@ -5,6 +5,7 @@ const profilePicture = document.getElementById("profilePicture");
 const profilePicturePreview = document.getElementById("profilePicturePreview");
 const summaryEmail = document.getElementById("summaryEmail");
 const summaryPhone = document.getElementById("summaryPhone");
+const sidebarProfileImage = document.getElementById("logo_img");
 
 const PROFILE_KEY = "profileData";
 
@@ -13,6 +14,9 @@ function carregarFotoSalva() {
   if (savedPhoto) {
     profilePicture.src = savedPhoto;
     profilePicturePreview.src = savedPhoto;
+    if (sidebarProfileImage) {
+      sidebarProfileImage.src = savedPhoto;
+    }
   }
 }
 
@@ -88,6 +92,9 @@ if (photoUpload) {
       const imageData = loadEvent.target.result;
       profilePicture.src = imageData;
       profilePicturePreview.src = imageData;
+      if (sidebarProfileImage) {
+        sidebarProfileImage.src = imageData;
+      }
       localStorage.setItem("profilePhoto", imageData);
       photoUpload.value = "";
     };
