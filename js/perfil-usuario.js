@@ -5,18 +5,13 @@ const profilePicture = document.getElementById("profilePicture");
 const profilePicturePreview = document.getElementById("profilePicturePreview");
 const summaryEmail = document.getElementById("summaryEmail");
 const summaryPhone = document.getElementById("summaryPhone");
-const sidebarProfileImage = document.getElementById("logo_img");
 
 const PROFILE_KEY = "profileData";
 
 function carregarFotoSalva() {
   const savedPhoto = localStorage.getItem("profilePhoto");
-  if (savedPhoto) {
-    profilePicture.src = savedPhoto;
-    profilePicturePreview.src = savedPhoto;
-    if (sidebarProfileImage) {
-      sidebarProfileImage.src = savedPhoto;
-    }
+  if (savedPhoto && window.applyProfilePhoto) {
+    window.applyProfilePhoto(savedPhoto);
   }
 }
 
@@ -90,12 +85,10 @@ if (photoUpload) {
     const reader = new FileReader();
     reader.onload = (loadEvent) => {
       const imageData = loadEvent.target.result;
-      profilePicture.src = imageData;
-      profilePicturePreview.src = imageData;
-      if (sidebarProfileImage) {
-        sidebarProfileImage.src = imageData;
-      }
       localStorage.setItem("profilePhoto", imageData);
+      if (window.applyProfilePhoto) {
+        window.applyProfilePhoto(imageData);
+      }
       photoUpload.value = "";
     };
 

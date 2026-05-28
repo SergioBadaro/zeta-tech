@@ -68,14 +68,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const statusLabel = call.completed ? "Concluído" : "Pendente";
       const slaDate = call.slaDate || call.date;
+      const formattedSla = slaDate ? new Date(slaDate).toLocaleDateString("pt-BR") : "Não informado";
 
       card.innerHTML = `
-        <p><strong>Nome:</strong> ${call.name}</p>
-        <p><strong>Telefone:</strong> ${call.phone}</p>
-        <p><strong>Email:</strong> ${call.email}</p>
-        <p><strong>Problema:</strong> ${call.problem}</p>
-        <p class="status-tag ${statusClass}">${statusLabel}</p>
-        <p class="sla-timer">SLA: ${slaDate ? new Date(slaDate).toLocaleDateString("pt-BR") : "Não informado"}</p>
+        <div class="card-header">
+          <div>
+            <p class="card-client-name">${call.name || "Cliente sem nome"}</p>
+            <p class="card-client-meta">${call.phone || "Telefone não informado"} • ${call.email || "E-mail não informado"}</p>
+          </div>
+          <span class="status-tag ${statusClass}">${statusLabel}</span>
+        </div>
+
+        <div class="card-form-grid">
+          <div class="card-field">
+            <span class="field-label">Nome</span>
+            <div class="field-value">${call.name || "Cliente sem nome"}</div>
+          </div>
+
+          <div class="card-field">
+            <span class="field-label">Telefone</span>
+            <div class="field-value">${call.phone || "Telefone não informado"}</div>
+          </div>
+
+          <div class="card-field">
+            <span class="field-label">E-mail</span>
+            <div class="field-value">${call.email || "E-mail não informado"}</div>
+          </div>
+
+          <div class="card-field">
+            <span class="field-label">SLA</span>
+            <div class="field-value">${formattedSla}</div>
+          </div>
+
+          <div class="card-field card-field-message">
+            <span class="field-label">Mensagem registrada</span>
+            <div class="field-value message-preview">${call.problem || "Sem descrição registrada"}</div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <p class="sla-timer">Prazo de atendimento: ${formattedSla}</p>
+          <p class="card-time">${call.createdAt ? new Date(call.createdAt).toLocaleString("pt-BR") : "Data não informada"}</p>
+        </div>
       `;
 
       const buttonContainer = document.createElement("div");
