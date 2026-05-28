@@ -80,17 +80,26 @@ window.addEventListener("load", revealOnScroll);
 function setupFaq() {
   document.querySelectorAll(".faq-question").forEach((button) => {
     button.addEventListener("click", () => {
+      const faqItem = button.closest(".faq-item");
       const answer = button.nextElementSibling;
       const isOpen = answer.classList.contains("open");
+
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.classList.remove("active");
+      });
 
       document.querySelectorAll(".faq-answer").forEach((item) => {
         item.classList.remove("open");
         item.style.maxHeight = null;
       });
 
-      if (!isOpen) {
+      if (!isOpen && faqItem) {
+        faqItem.classList.add("active");
         answer.classList.add("open");
         answer.style.maxHeight = `${answer.scrollHeight}px`;
+        button.setAttribute("aria-expanded", "true");
+      } else {
+        button.setAttribute("aria-expanded", "false");
       }
     });
   });
@@ -99,6 +108,10 @@ function setupFaq() {
 function initializeFaqAnswers() {
   document.querySelectorAll(".faq-answer").forEach((answer) => {
     answer.style.maxHeight = null;
+  });
+
+  document.querySelectorAll(".faq-question").forEach((button) => {
+    button.setAttribute("aria-expanded", "false");
   });
 }
 

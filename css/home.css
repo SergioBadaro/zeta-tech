@@ -287,6 +287,10 @@ header {
   line-height: 1.8;
 }
 
+main {
+  padding-bottom: 100px;
+}
+
 .about-card {
   background: rgba(255, 255, 255, 0.78);
   border-radius: 32px;
@@ -411,6 +415,76 @@ header {
   line-height: 1.85;
 }
 
+.faq-item {
+  background: #fff;
+  border: 1px solid #e6e0fb;
+  border-radius: 24px;
+  padding: 20px 22px;
+  box-shadow: 0 12px 32px rgba(80, 64, 152, 0.09);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-3px);
+  border-color: #b9a9ff;
+  box-shadow: 0 16px 36px rgba(80, 64, 152, 0.12);
+}
+
+.faq-question {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #2f235d;
+  font-size: 1.03rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 0;
+}
+
+.faq-question::after {
+  content: "+";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #efe9ff;
+  color: #6b46c1;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.faq-item.active .faq-question::after {
+  content: "−";
+  background: #6b46c1;
+  color: #fff;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+}
+
+.faq-answer p {
+  margin-top: 14px;
+  color: #5f587b;
+  line-height: 1.7;
+}
+
+.faq-answer.open {
+  max-height: 160px;
+  opacity: 1;
+}
+
 .faq-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -519,6 +593,34 @@ header {
 
 .contact-details-card li i {
   color: #7b4fe0;
+}
+
+.whatsapp-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #25d366 0%, #128c7e 100%);
+  box-shadow: 0 18px 36px rgba(18, 140, 126, 0.32);
+  z-index: 1000;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.whatsapp-button:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 22px 44px rgba(18, 140, 126, 0.42);
+}
+
+.whatsapp-button img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
 }
 
 footer {
@@ -633,6 +735,18 @@ footer p {
   .button-primary,
   .button-secondary {
     width: 100%;
+  }
+
+  .whatsapp-button {
+    right: 16px;
+    bottom: 16px;
+    width: 62px;
+    height: 62px;
+  }
+
+  .whatsapp-button img {
+    width: 30px;
+    height: 30px;
   }
 
   .contact-details-card,
