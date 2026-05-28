@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyState.hidden = true;
 
     filteredCalls.forEach((call) => {
-      const card = document.createElement("div");
+      const card = document.createElement("article");
       card.classList.add("card");
 
       const originalIndex = calls.indexOf(call);
@@ -69,46 +69,55 @@ document.addEventListener("DOMContentLoaded", () => {
       const statusLabel = call.completed ? "Concluído" : "Pendente";
       const slaDate = call.slaDate || call.date;
       const formattedSla = slaDate ? new Date(slaDate).toLocaleDateString("pt-BR") : "Não informado";
+      const problemSummary = call.problem || "Sem descrição registrada";
 
       card.innerHTML = `
         <div class="card-header">
-          <div>
-            <p class="card-client-name">${call.name || "Cliente sem nome"}</p>
-            <p class="card-client-meta">${call.phone || "Telefone não informado"} • ${call.email || "E-mail não informado"}</p>
+          <div class="card-summary-main">
+            <div class="card-summary-top">
+              <span class="status-tag ${statusClass}">${statusLabel}</span>
+              <span class="card-time">${call.createdAt ? new Date(call.createdAt).toLocaleString("pt-BR") : "Data não informada"}</span>
+            </div>
+            <p class="call-summary-line">Problema: ${problemSummary}</p>
           </div>
-          <span class="status-tag ${statusClass}">${statusLabel}</span>
+
+          <button class="call-toggle" type="button" aria-expanded="false">
+            <span>Ver detalhes</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
         </div>
 
-        <div class="card-form-grid">
-          <div class="card-field">
-            <span class="field-label">Nome</span>
-            <div class="field-value">${call.name || "Cliente sem nome"}</div>
+        <div class="card-details">
+          <div class="card-form-grid">
+            <div class="card-field">
+              <span class="field-label">Nome</span>
+              <div class="field-value">${call.name || "Cliente sem nome"}</div>
+            </div>
+
+            <div class="card-field">
+              <span class="field-label">Telefone</span>
+              <div class="field-value">${call.phone || "Telefone não informado"}</div>
+            </div>
+
+            <div class="card-field">
+              <span class="field-label">E-mail</span>
+              <div class="field-value">${call.email || "E-mail não informado"}</div>
+            </div>
+
+            <div class="card-field">
+              <span class="field-label">SLA</span>
+              <div class="field-value">${formattedSla}</div>
+            </div>
+
+            <div class="card-field card-field-message">
+              <span class="field-label">Mensagem registrada</span>
+              <div class="field-value message-preview">${problemSummary}</div>
+            </div>
           </div>
 
-          <div class="card-field">
-            <span class="field-label">Telefone</span>
-            <div class="field-value">${call.phone || "Telefone não informado"}</div>
+          <div class="card-footer">
+            <p class="sla-timer">Prazo de atendimento: ${formattedSla}</p>
           </div>
-
-          <div class="card-field">
-            <span class="field-label">E-mail</span>
-            <div class="field-value">${call.email || "E-mail não informado"}</div>
-          </div>
-
-          <div class="card-field">
-            <span class="field-label">SLA</span>
-            <div class="field-value">${formattedSla}</div>
-          </div>
-
-          <div class="card-field card-field-message">
-            <span class="field-label">Mensagem registrada</span>
-            <div class="field-value message-preview">${call.problem || "Sem descrição registrada"}</div>
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <p class="sla-timer">Prazo de atendimento: ${formattedSla}</p>
-          <p class="card-time">${call.createdAt ? new Date(call.createdAt).toLocaleString("pt-BR") : "Data não informada"}</p>
         </div>
       `;
 
@@ -128,7 +137,25 @@ document.addEventListener("DOMContentLoaded", () => {
       buttonContainer.appendChild(completeButton);
       buttonContainer.appendChild(deleteButton);
 
-      card.appendChild(buttonContainer);
+      card.querySelector(".card-details").appendChild(buttonContainer);
+
+      const toggleButton = card.querySelector(".call-toggle");
+      const details = card.querySelector(".card-details");
+      const toggleLabel = toggleButton.querySelector("span");
+
+      details.classList.remove("expanded");
+      toggleButton.classList.remove("expanded");
+      toggleButton.setAttribute("aria-expanded", "false");
+      toggleLabel.textContent = "Ver detalhes";
+
+      toggleButton.addEventListener("click", () => {
+        const isExpandedNow = !details.classList.contains("expanded");
+        details.classList.toggle("expanded", isExpandedNow);
+        toggleButton.classList.toggle("expanded", isExpandedNow);
+        toggleButton.setAttribute("aria-expanded", String(isExpandedNow));
+        toggleLabel.textContent = isExpandedNow ? "Ocultar detalhes" : "Ver detalhes";
+      });
+
       cardsContainer.appendChild(card);
     });
   }
