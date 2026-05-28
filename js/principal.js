@@ -5,9 +5,21 @@ document.getElementById("open_btn").addEventListener("click", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const dashboardContainer = document.getElementById("dashboardContainer");
 
+  function normalizeCalls(calls) {
+    return calls.map((call) => ({
+      ...call,
+      createdAt: call.createdAt || call.date || new Date().toISOString(),
+      completed: Boolean(call.completed),
+      status: call.status || (Boolean(call.completed) ? "concluído" : "pendente"),
+      slaDate: call.slaDate || call.date || null,
+    }));
+  }
+
   // Função para carregar dados dos chamados
   function loadCalls() {
-    const calls = JSON.parse(localStorage.getItem("calls") || "[]");
+    const storedCalls = JSON.parse(localStorage.getItem("calls") || "[]");
+    const calls = normalizeCalls(storedCalls);
+    localStorage.setItem("calls", JSON.stringify(calls));
 
     // Contadores
     const totalCalls = calls.length;

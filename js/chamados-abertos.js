@@ -1,71 +1,121 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cardsContainer = document.getElementById("cardsContainer");
+  const emptyState = document.getElementById("emptyState");
+  const searchInput = document.getElementById("call-search");
+  const statusFilter = document.getElementById("call-status-filter");
   const sidebar = document.getElementById("sidebar");
   const openBtn = document.getElementById("open_btn");
   const openBtnIcon = document.getElementById("open_btn_icon");
 
-  // Função para carregar os chamados do localStorage
-  function loadCalls() {
-    const calls = JSON.parse(localStorage.getItem("calls") || "[]");
+  function normalizeCalls(calls) {
+    return calls.map((call) => ({
+      ...call,
+      createdAt: call.createdAt || call.date || new Date().toISOString(),
+      completed: Boolean(call.completed),
+      status: call.status || (Boolean(call.completed) ? "concluído" : "pendente"),
+      slaDate: call.slaDate || call.date || null,
+    }));
+  }
 
-    // Limpa o container antes de carregar os novos cards
+  function loadCalls() {
+    const storedCalls = JSON.parse(localStorage.getItem("calls") || "[]");
+    const calls = normalizeCalls(storedCalls);
+    localStorage.setItem("calls", JSON.stringify(calls));
+
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const selectedStatus = statusFilter.value;
+
+    const filteredCalls = calls.filter((call) => {
+      const searchableText = [
+        call.name,
+        call.phone,
+        call.email,
+        call.problem,
+        call.status,
+        call.slaDate,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      const matchesSearch = searchableText.includes(searchTerm);
+      const matchesStatus =
+        selectedStatus === "all" ||
+        (selectedStatus === "open" && call.status === "pendente") ||
+        (selectedStatus === "completed" && call.status === "concluído");
+
+      return matchesSearch && matchesStatus;
+    });
+
     cardsContainer.innerHTML = "";
 
-    calls.forEach((call, index) => {
+    if (filteredCalls.length === 0) {
+      emptyState.hidden = false;
+      return;
+    }
+
+    emptyState.hidden = true;
+
+    filteredCalls.forEach((call) => {
       const card = document.createElement("div");
       card.classList.add("card");
 
-      if (call.completed) {
-        card.classList.add("completed");
-      }
+      const originalIndex = calls.indexOf(call);
+      card.dataset.index = originalIndex;
+
+      const statusClass = call.completed ? "completed" : "pending";
+      card.classList.add(statusClass);
+
+      const statusLabel = call.completed ? "Concluído" : "Pendente";
+      const slaDate = call.slaDate || call.date;
 
       card.innerHTML = `
         <p><strong>Nome:</strong> ${call.name}</p>
         <p><strong>Telefone:</strong> ${call.phone}</p>
         <p><strong>Email:</strong> ${call.email}</p>
         <p><strong>Problema:</strong> ${call.problem}</p>
-        <p class="sla-timer">SLA: ${new Date(call.slaDate).toLocaleString()}</p>
+        <p class="status-tag ${statusClass}">${statusLabel}</p>
+        <p class="sla-timer">SLA: ${slaDate ? new Date(slaDate).toLocaleDateString("pt-BR") : "Não informado"}</p>
       `;
 
-      // Cria a div que vai conter os botões
       const buttonContainer = document.createElement("div");
       buttonContainer.classList.add("card-buttons");
 
-      // Botão de concluir
       const completeButton = document.createElement("button");
       completeButton.textContent = "Concluir";
       completeButton.classList.add("complete-btn");
-      completeButton.addEventListener("click", () => completeCall(index, card));
+      completeButton.addEventListener("click", () => completeCall(Number(card.dataset.index), card));
 
-      // Botão de deletar
       const deleteButton = document.createElement("button");
       deleteButton.textContent = "Deletar";
       deleteButton.classList.add("delete-btn");
-      deleteButton.addEventListener("click", () => deleteCall(index));
+      deleteButton.addEventListener("click", () => deleteCall(Number(card.dataset.index)));
 
-      // Adiciona os botões ao container
       buttonContainer.appendChild(completeButton);
       buttonContainer.appendChild(deleteButton);
 
-      // Adiciona o container de botões ao card
       card.appendChild(buttonContainer);
-
-      // Adiciona o card ao container de cards
       cardsContainer.appendChild(card);
     });
   }
 
-  // Função para concluir um chamado
   function completeCall(index, cardElement) {
     const calls = JSON.parse(localStorage.getItem("calls") || "[]");
     calls[index].completed = true;
+    calls[index].status = "concluído";
     localStorage.setItem("calls", JSON.stringify(calls));
 
-    // Atualiza a aparência do card
+    cardElement.classList.remove("pending");
     cardElement.classList.add("completed");
+
+    const statusTag = cardElement.querySelector(".status-tag");
+    if (statusTag) {
+      statusTag.textContent = "Concluído";
+      statusTag.classList.remove("pending");
+      statusTag.classList.add("completed");
+    }
   }
 
-  // Função para deletar um chamado
   function deleteCall(index) {
     const calls = JSON.parse(localStorage.getItem("calls") || "[]");
     calls.splice(index, 1);
@@ -73,7 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loadCalls();
   }
 
-  // Função para alternar o menu lateral
+  searchInput.addEventListener("input", loadCalls);
+  statusFilter.addEventListener("change", loadCalls);
+
   openBtn.addEventListener("click", () => {
     sidebar.classList.toggle("open-sidebar");
 
@@ -84,6 +136,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Carregar chamados ao iniciar
   loadCalls();
 });

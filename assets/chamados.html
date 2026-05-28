@@ -103,6 +103,24 @@
     <div class="main-content">
         <h2>Chamados Abertos</h2>
 
+        <div class="toolbar" aria-label="Filtros de chamados">
+            <label class="toolbar-field" for="call-search">
+                <span>Buscar chamados</span>
+                <input type="search" id="call-search" placeholder="Nome, email, telefone ou problema">
+            </label>
+
+            <label class="toolbar-field" for="call-status-filter">
+                <span>Status</span>
+                <select id="call-status-filter">
+                    <option value="all">Todos</option>
+                    <option value="open">Pendentes</option>
+                    <option value="completed">Concluídos</option>
+                </select>
+            </label>
+        </div>
+
+        <p class="empty-state" id="emptyState" hidden>Nenhum chamado encontrado para os filtros selecionados.</p>
+
         <!-- Container dos chamados -->
         <div class="cards-container" id="cardsContainer"></div>
 

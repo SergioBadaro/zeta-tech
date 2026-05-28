@@ -178,6 +178,52 @@ h2 {
   color: #410663;
 }
 
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(57, 35, 105, 0.12);
+}
+
+.toolbar-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  color: #410663;
+  font-weight: 600;
+}
+
+.toolbar-field input,
+.toolbar-field select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #bfc3dd;
+  color: #2f235d;
+  background-color: #fff;
+}
+
+.toolbar-field input:focus,
+.toolbar-field select:focus {
+  outline: 2px solid #4f46e5;
+  border-color: #4f46e5;
+}
+
+.empty-state {
+  margin: 12px 0 20px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #5b4d82;
+  text-align: center;
+  border: 1px dashed #b9b1dc;
+}
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -196,6 +242,29 @@ h2 {
 
 .card p {
   margin: 8px 0;
+}
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-tag.pending {
+  background-color: #fff3cd;
+  color: #8a6d3b;
+}
+
+.status-tag.completed {
+  background-color: #d4edda;
+  color: #155724;
 }
 
 .sla-timer {

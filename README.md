@@ -74,6 +74,8 @@ Em resumo, a plataforma funciona como um **portal de suporte e gestão de ticket
 - Criação e armazenamento de chamados.
 - Listagem de chamados com ações de concluir e excluir.
 - Dashboard com cartões de métricas.
+- Tela de perfil com upload real de foto salva no navegador.
+- Busca e filtros de chamados por texto e status.
 - Tela de perfil e mensagens de sucesso.
 
 ## Como executar localmente

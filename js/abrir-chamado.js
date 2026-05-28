@@ -10,13 +10,21 @@ const modal = document.getElementById("modal");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   const calls = JSON.parse(localStorage.getItem("calls") || "[]");
+  const createdAt = new Date().toISOString();
+  const slaDate = calculateSLA(document.getElementById("date").value);
+
   calls.push({
     name: document.getElementById("name").value,
     phone: document.getElementById("phone").value,
     email: document.getElementById("email").value,
     problem: document.getElementById("problem").value,
-    date: calculateSLA(document.getElementById("date").value),
+    date: slaDate,
+    slaDate: slaDate,
+    createdAt: createdAt,
+    status: "pendente",
+    completed: false,
   });
+
   localStorage.setItem("calls", JSON.stringify(calls));
   modal.style.display = "flex";
   form.reset();
