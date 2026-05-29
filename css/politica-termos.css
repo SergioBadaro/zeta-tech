@@ -1,0 +1,82 @@
+/* style.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f9;
+}
+
+header {
+  background-color: #510273;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.logo img {
+  display: block;
+  margin: 0 auto;
+  width: 120px; /* Ajuste conforme necessário */
+  height: auto;
+  border-radius: 50%; /* Torna a imagem circular */
+  box-shadow: 0 6px 8px rgba(104, 10, 133, 0.903);
+}
+
+.logo p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+header .logo p {
+  margin: 5px 0 0;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+main {
+  padding: 20px;
+}
+
+.policy-section {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.policy-section h2 {
+  text-align: center;
+  color: #510273;
+  margin-bottom: 10px;
+}
+
+.policy-section p {
+  margin: 10px 0;
+}
+
+.policy-section ul {
+  list-style-type: disc;
+  margin: 10px 20px;
+}
+
+.policy-section h3 {
+  color: #6e83d2;
+  margin-top: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #510273;
+  color: #fff;
+  margin-top: 20px;
+}
