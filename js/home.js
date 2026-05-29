@@ -6,21 +6,57 @@ const typewriterText = document.getElementById("typewriter-text");
 const contactForm = document.getElementById("contact-form");
 const successMessage = document.querySelector(".success-message");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 80) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
+window.addEventListener(
+  "scroll",
+  () => {
+    if (window.scrollY > 80) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  },
+  { passive: true },
+);
 
-hamburger.addEventListener("click", () => {
-  menu.classList.toggle("active");
-});
+// Menu toggle com aria-expanded e aria-hidden
+if (hamburger && menu) {
+  hamburger.addEventListener("click", (e) => {
+    const open = menu.classList.toggle("active");
+    hamburger.setAttribute("aria-expanded", String(open));
+    menu.setAttribute("aria-hidden", String(!open));
+    e.stopPropagation();
+  });
+
+  // fechar ao clicar fora
+  document.addEventListener("click", (e) => {
+    if (
+      !menu.contains(e.target) &&
+      !hamburger.contains(e.target) &&
+      menu.classList.contains("active")
+    ) {
+      menu.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-hidden", "true");
+    }
+  });
+
+  // fechar com ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu.classList.contains("active")) {
+      menu.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-hidden", "true");
+    }
+  });
+}
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    menu.classList.remove("active");
+    if (menu.classList.contains("active")) {
+      menu.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-hidden", "true");
+    }
   });
 });
 
@@ -63,60 +99,60 @@ if (typewriterText) {
   writeTypewriter();
 }
 
-function revealOnScroll() {
-  document.querySelectorAll(".fade-in").forEach((element) => {
-    const rect = element.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-    if (rect.top < windowHeight - 100) {
-      element.classList.add("visible");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-
-function setupFaq() {
-  document.querySelectorAll(".faq-question").forEach((button) => {
-    button.addEventListener("click", () => {
-      const faqItem = button.closest(".faq-item");
-      const answer = button.nextElementSibling;
-      const isOpen = answer.classList.contains("open");
-
-      document.querySelectorAll(".faq-item").forEach((item) => {
-        item.classList.remove("active");
-      });
-
-      document.querySelectorAll(".faq-answer").forEach((item) => {
-        item.classList.remove("open");
-        item.style.maxHeight = null;
-      });
-
-      if (!isOpen && faqItem) {
-        faqItem.classList.add("active");
-        answer.classList.add("open");
-        answer.style.maxHeight = `${answer.scrollHeight}px`;
-        button.setAttribute("aria-expanded", "true");
-      } else {
-        button.setAttribute("aria-expanded", "false");
+// Substitui revealOnScroll por IntersectionObserver (mais performático)
+const revealObserver = new IntersectionObserver(
+  (entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
       }
     });
+  },
+  { threshold: 0.12 },
+);
+
+document
+  .querySelectorAll(".fade-in")
+  .forEach((el) => revealObserver.observe(el));
+
+// FAQ: event delegation + aria
+const faqGrid = document.querySelector(".faq-grid");
+if (faqGrid) {
+  faqGrid.addEventListener("click", (e) => {
+    const btn = e.target.closest(".faq-question");
+    if (!btn) return;
+    const faqItem = btn.closest(".faq-item");
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains("open");
+
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      item.classList.remove("active");
+      const a = item.querySelector(".faq-answer");
+      if (a) {
+        a.classList.remove("open");
+        a.style.maxHeight = null;
+      }
+      const q = item.querySelector(".faq-question");
+      if (q) q.setAttribute("aria-expanded", "false");
+    });
+
+    if (!isOpen) {
+      faqItem.classList.add("active");
+      answer.classList.add("open");
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
+      btn.setAttribute("aria-expanded", "true");
+    }
   });
+
+  // inicializar estado
+  document
+    .querySelectorAll(".faq-question")
+    .forEach((b) => b.setAttribute("aria-expanded", "false"));
+  document
+    .querySelectorAll(".faq-answer")
+    .forEach((a) => (a.style.maxHeight = null));
 }
-
-function initializeFaqAnswers() {
-  document.querySelectorAll(".faq-answer").forEach((answer) => {
-    answer.style.maxHeight = null;
-  });
-
-  document.querySelectorAll(".faq-question").forEach((button) => {
-    button.setAttribute("aria-expanded", "false");
-  });
-}
-
-setupFaq();
-initializeFaqAnswers();
 
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {

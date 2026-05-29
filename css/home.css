@@ -1,14 +1,23 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
 
+:root {
+  --primary: #7b4fe0;
+  --primary-600: #682ee4;
+  --bg-start: #f5f3ff;
+  --bg-end: #e0e7f8;
+  --text: #1d1b38;
+  --muted: #6f648f;
+  --radius-lg: 24px;
+  --max-width: 1180px;
+  --transition-fast: 0.25s;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-<<<<<<< HEAD
   text-decoration: none;
-=======
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 html {
@@ -29,13 +38,9 @@ body {
 .fade-in {
   opacity: 0;
   transform: translateY(24px);
-<<<<<<< HEAD
   transition:
     opacity 0.7s ease-out,
     transform 0.7s ease-out;
-=======
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 .fade-in.visible {
@@ -98,10 +103,7 @@ header {
   font-size: 1.45rem;
   color: #4f2a91;
   font-weight: 700;
-<<<<<<< HEAD
   text-decoration: none;
-=======
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 .nav-links {
@@ -133,6 +135,10 @@ header {
   box-shadow: 0 18px 30px rgba(123, 79, 224, 0.18);
 }
 
+.header-cta:hover {
+  color: #f8f5ff;
+}
+
 #hamburger {
   display: none;
   border: none;
@@ -162,15 +168,11 @@ header {
 .hero-overlay {
   position: absolute;
   inset: 0;
-<<<<<<< HEAD
   background: linear-gradient(
     180deg,
     rgba(13, 6, 43, 0.75) 0%,
     rgba(18, 9, 61, 0.75) 100%
   );
-=======
-  background: linear-gradient(180deg, rgba(13, 6, 43, 0.75) 0%, rgba(18, 9, 61, 0.75) 100%);
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
   z-index: -1;
 }
 
@@ -229,14 +231,10 @@ header {
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
-<<<<<<< HEAD
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background 0.25s ease;
-=======
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 .button-primary,
@@ -333,11 +331,7 @@ main {
 }
 
 .feature-item {
-<<<<<<< HEAD
   background: linear-gradient(180deg, #f8f4ff 0%, #efe9ff 100%);
-=======
-  background: #fff;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
   padding: 26px;
   border-radius: 24px;
   border: 1px solid #eceaf9;
@@ -381,22 +375,14 @@ main {
   display: flex;
   flex-direction: column;
   gap: 20px;
-<<<<<<< HEAD
   background: linear-gradient(180deg, #f8f4ff 0%, #efe9ff 100%);
-=======
-  background: #fff;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
   border-radius: 26px;
   overflow: hidden;
   padding: 0;
   border: 1px solid #ede9ff;
-<<<<<<< HEAD
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
-=======
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 .service-card:hover {
@@ -464,14 +450,10 @@ main {
   border-radius: 24px;
   padding: 20px 22px;
   box-shadow: 0 12px 32px rgba(80, 64, 152, 0.09);
-<<<<<<< HEAD
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
-=======
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 .faq-item:hover {
@@ -521,14 +503,10 @@ main {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-<<<<<<< HEAD
   transition:
     max-height 0.35s ease,
     opacity 0.35s ease,
     margin-top 0.35s ease;
-=======
-  transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 .faq-answer p {
@@ -563,11 +541,7 @@ main {
 
 .contact-form-card,
 .contact-details-card {
-<<<<<<< HEAD
   background: linear-gradient(180deg, #f8f4ff 0%, #efe9ff 100%);
-=======
-  background: #f8f7ff;
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
   border-radius: 30px;
   padding: 36px;
   border: 1px solid #e8e5ff;
@@ -658,7 +632,6 @@ main {
 
 .whatsapp-button {
   position: fixed;
-<<<<<<< HEAD
 
   right: 24px;
   bottom: 24px;
@@ -735,32 +708,6 @@ main {
   box-shadow:
     0 0 15px rgba(37, 211, 102, 0.8),
     0 0 35px rgba(37, 211, 102, 0.6);
-=======
-  right: 24px;
-  bottom: 24px;
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #25d366 0%, #128c7e 100%);
-  box-shadow: 0 18px 36px rgba(18, 140, 126, 0.32);
-  z-index: 1000;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.whatsapp-button:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 22px 44px rgba(18, 140, 126, 0.42);
-}
-
-.whatsapp-button img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
->>>>>>> f5a1e929603e6f9d848c80fb16f357a5f1e2eb29
 }
 
 footer {
