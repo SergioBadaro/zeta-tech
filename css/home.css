@@ -710,29 +710,128 @@ main {
     0 0 35px rgba(37, 211, 102, 0.6);
 }
 
-footer {
-  padding: 26px 24px;
-  text-align: center;
-  color: #fff;
-  background: #4f46e5;
+/* Footer estilo inspirado na imagem: três colunas */
+.site-footer {
+  background: #41228a;
+  color: #cfe6ff;
+  padding: 48px 24px;
 }
 
-.footer-links {
-  margin-bottom: 12px;
+.site-footer .footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  align-items: start;
 }
 
-.footer-links a {
-  color: rgba(255, 255, 255, 0.9);
+.footer-col h4 {
+  color: #ffffff;
+  margin-bottom: 14px;
+  font-size: 1.05rem;
+}
+
+.footer-logo {
+  width: 110px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.footer-desc {
+  margin-top: 12px;
+  color: #bcd6ff;
+  max-width: 340px;
+  line-height: 1.6;
+  font-size: 0.98rem;
+}
+
+.footer-social {
+  margin-top: 18px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #9fc9ff;
   text-decoration: none;
-  font-size: 0.95rem;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease;
 }
 
-.footer-links a:hover {
-  color: #f7f2ff;
+.footer-social a:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
 }
 
-footer p {
-  font-size: 0.92rem;
+.footer-col.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.footer-col.nav a {
+  color: #9fc9ff;
+  text-decoration: none;
+}
+.footer-col.nav a:hover {
+  color: #fff;
+}
+
+.footer-col.contact .contact-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #9fc9ff;
+  margin-bottom: 10px;
+}
+.footer-col.contact .contact-item i {
+  min-width: 24px;
+  text-align: center;
+}
+
+.footer-col.contact .contact-item a {
+  color: #9fc9ff;
+  text-decoration: none;
+}
+
+.footer-col.contact .contact-item a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  margin-top: 28px;
+  padding-top: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  color: #9fc9ff;
+}
+
+.footer-bottom a {
+  color: #9fc9ff;
+  text-decoration: none;
+}
+.footer-bottom a:hover {
+  color: #fff;
+}
+
+.footer-bottom span {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 1080px) {
@@ -803,6 +902,19 @@ footer p {
   .contact-details-card,
   .contact-form-card {
     padding: 28px;
+  }
+
+  /* footer responsivo: empilha colunas em telas menores */
+  .site-footer .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    justify-content: center;
   }
 }
 
