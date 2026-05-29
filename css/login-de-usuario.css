@@ -59,6 +59,34 @@ body {
       transparent 36%
     );
   position: relative;
+  overflow: hidden;
+  transform: translate3d(var(--visual-move-x, 0), var(--visual-move-y, 0), 0);
+  transition: transform 0.18s ease-out;
+}
+
+.auth-visual .visual-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: 0.7;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transform: translate3d(0, 0, 0);
+  animation-name: float-blob;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes float-blob {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .auth-visual::before {
@@ -383,6 +411,19 @@ body {
 
   .auth-visual {
     min-height: 290px;
+    padding: 30px 24px;
+  }
+
+  .auth-visual .lead,
+  .auth-visual .feature-list,
+  .auth-visual .visual-card {
+    display: none;
+  }
+
+  .auth-visual h1 {
+    font-size: 2.8rem;
+    line-height: 1.05;
+    margin-bottom: 10px;
   }
 }
 
