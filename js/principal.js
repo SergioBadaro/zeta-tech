@@ -69,7 +69,8 @@ function renderNotifications() {
   if (notifications.length === 0) {
     const emptyState = document.createElement("div");
     emptyState.className = "empty-state";
-    emptyState.textContent = "Nenhuma atualização recente. Acompanhe novos chamados aqui.";
+    emptyState.textContent =
+      "Nenhuma atualização recente. Acompanhe novos chamados aqui.";
     container.appendChild(emptyState);
     return;
   }
@@ -77,7 +78,12 @@ function renderNotifications() {
   notifications.forEach((item) => {
     const notification = document.createElement("div");
     notification.className = "notification-item";
-    const dotClass = item.type === "warning" ? "#f59e0b" : item.type === "deleted" ? "#ef4444" : "#22c55e";
+    const dotClass =
+      item.type === "warning"
+        ? "#f59e0b"
+        : item.type === "deleted"
+          ? "#ef4444"
+          : "#22c55e";
 
     notification.innerHTML = `
       <div class="notification-dot" style="background:${dotClass};"></div>
@@ -99,11 +105,24 @@ function renderSummary(calls) {
   summaryGrid.innerHTML = "";
 
   const totalCalls = calls.length;
-  const pendingCalls = calls.filter((call) => call.status === "pendente").length;
-  const completedCalls = calls.filter((call) => call.status === "concluído").length;
-  const overdueCalls = calls.filter((call) => call.status === "pendente" && call.slaDate && new Date(call.slaDate) < new Date()).length;
-  const callsToday = calls.filter((call) => new Date(call.createdAt).toDateString() === new Date().toDateString()).length;
-  const closeRate = totalCalls === 0 ? 0 : Math.round((completedCalls / totalCalls) * 100);
+  const pendingCalls = calls.filter(
+    (call) => call.status === "pendente",
+  ).length;
+  const completedCalls = calls.filter(
+    (call) => call.status === "concluído",
+  ).length;
+  const overdueCalls = calls.filter(
+    (call) =>
+      call.status === "pendente" &&
+      call.slaDate &&
+      new Date(call.slaDate) < new Date(),
+  ).length;
+  const callsToday = calls.filter(
+    (call) =>
+      new Date(call.createdAt).toDateString() === new Date().toDateString(),
+  ).length;
+  const closeRate =
+    totalCalls === 0 ? 0 : Math.round((completedCalls / totalCalls) * 100);
 
   const cards = [
     {
@@ -168,9 +187,24 @@ function renderSummary(calls) {
     overviewList.innerHTML = "";
 
     const overviewItems = [
-      { label: "Chamados em aberto", value: pendingCalls, className: "active", accent: "#4f46e5" },
-      { label: "Chamados concluídos", value: completedCalls, className: "success", accent: "#22c55e" },
-      { label: "Chamados com SLA crítico", value: overdueCalls, className: "warning", accent: "#f59e0b" },
+      {
+        label: "Chamados em aberto",
+        value: pendingCalls,
+        className: "active",
+        accent: "#4f46e5",
+      },
+      {
+        label: "Chamados concluídos",
+        value: completedCalls,
+        className: "success",
+        accent: "#22c55e",
+      },
+      {
+        label: "Chamados com SLA crítico",
+        value: overdueCalls,
+        className: "warning",
+        accent: "#f59e0b",
+      },
     ];
 
     overviewItems.forEach((item) => {
@@ -199,7 +233,10 @@ function renderTrend(calls) {
     date.setDate(date.getDate() - (6 - index));
     return {
       label: date.toLocaleDateString("pt-BR", { weekday: "short" }),
-      count: calls.filter((call) => new Date(call.createdAt).toDateString() === date.toDateString()).length,
+      count: calls.filter(
+        (call) =>
+          new Date(call.createdAt).toDateString() === date.toDateString(),
+      ).length,
     };
   });
 
@@ -223,7 +260,9 @@ function renderStatusBars(calls) {
   statusBars.innerHTML = "";
 
   const openCount = calls.filter((call) => call.status === "pendente").length;
-  const completedCount = calls.filter((call) => call.status === "concluído").length;
+  const completedCount = calls.filter(
+    (call) => call.status === "concluído",
+  ).length;
   const total = calls.length || 1;
 
   [
@@ -248,12 +287,15 @@ function renderRecentCalls(calls) {
 
   recentCalls.innerHTML = "";
 
-  const sorted = [...calls].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 6);
+  const sorted = [...calls]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 6);
 
   if (sorted.length === 0) {
     const emptyState = document.createElement("div");
     emptyState.className = "empty-state";
-    emptyState.textContent = "Nenhum chamado registrado ainda. Cadastre um novo ticket para visualizar aqui.";
+    emptyState.textContent =
+      "Nenhum chamado registrado ainda. Cadastre um novo ticket para visualizar aqui.";
     recentCalls.appendChild(emptyState);
     return;
   }
@@ -311,6 +353,11 @@ function clearNotifications() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("user")) {
+    window.location.href = "/assets/Login/login-de-usuario.html";
+    return;
+  }
+
   refreshDashboard();
 
   const logoutButton = document.getElementById("logout_btn");

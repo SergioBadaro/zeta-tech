@@ -68,6 +68,19 @@
                 </div>
             </form>
 
+            <div class="auth-modal" id="authModal" aria-hidden="true">
+                <div class="auth-modal__overlay" id="authModalOverlay"></div>
+                <div class="auth-modal__content" role="dialog" aria-modal="true" aria-labelledby="authModalTitle"
+                    aria-describedby="authModalMessage">
+                    <button type="button" class="auth-modal__close" id="authModalClose"
+                        aria-label="Fechar aviso">×</button>
+                    <div class="auth-modal__icon" id="authModalIcon">!</div>
+                    <h3 class="auth-modal__title" id="authModalTitle">Aviso</h3>
+                    <p class="auth-modal__message" id="authModalMessage">Mensagem aqui</p>
+                    <button type="button" class="auth-modal__button" id="authModalButton">Fechar</button>
+                </div>
+            </div>
+
             <p class="register-link">Ainda não tem cadastro? <a href="/assets/Login/cadastro-de-conta.html">Crie sua
                     conta</a></p>
         </section>

@@ -58,6 +58,11 @@
                 </div>
 
                 <div class="field-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required>
+                </div>
+
+                <div class="field-group">
                     <label for="password">Senha</label>
                     <div class="password-wrapper">
                         <input type="password" id="password" name="password" placeholder="Criar senha" required>
@@ -83,11 +88,6 @@
                         conferem</span>
                 </div>
 
-                <div class="field-group">
-                    <label for="phone">Telefone</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required>
-                </div>
-
                 <div class="checkbox">
                     <input type="checkbox" id="terms" required>
                     <label for="terms">Aceito os <a href="/assets/politica-termos.html" target="_blank">termos de
@@ -98,6 +98,19 @@
                     <button type="submit" class="primary-button pulse">Criar Conta</button>
                 </div>
             </form>
+
+            <div class="auth-modal" id="authModal" aria-hidden="true">
+                <div class="auth-modal__overlay" id="authModalOverlay"></div>
+                <div class="auth-modal__content" role="dialog" aria-modal="true" aria-labelledby="authModalTitle"
+                    aria-describedby="authModalMessage">
+                    <button type="button" class="auth-modal__close" id="authModalClose"
+                        aria-label="Fechar aviso">×</button>
+                    <div class="auth-modal__icon" id="authModalIcon">!</div>
+                    <h3 class="auth-modal__title" id="authModalTitle">Aviso</h3>
+                    <p class="auth-modal__message" id="authModalMessage">Mensagem aqui</p>
+                    <button type="button" class="auth-modal__button" id="authModalButton">Fechar</button>
+                </div>
+            </div>
 
             <p class="register-link">Já tem conta? <a href="/assets/Login/login-de-usuario.html">Faça login</a></p>
         </section>

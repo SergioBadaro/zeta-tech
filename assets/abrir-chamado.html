@@ -78,136 +78,144 @@
         </nav>
 
         <div class="content" id="contentShell">
-        <section class="ticket-shell">
-            <article class="ticket-hero-panel">
-                <div class="ticket-hero-copy">
-                    <p class="eyebrow">Central de suporte</p>
-                    <h1>Abrir chamado</h1>
-                    <p class="hero-copy">Registre o problema com as informações essenciais para que o time de suporte possa responder rapidamente.</p>
-                </div>
-
-                <div class="ticket-meta-grid">
-                    <div class="meta-pill">
-                        <div class="meta-icon"><i class="fa-solid fa-stopwatch"></i></div>
-                        <div>
-                            <p class="meta-title">Tempo médio</p>
-                            <p class="meta-value">Até 4 horas úteis</p>
-                        </div>
+            <section class="ticket-shell">
+                <article class="ticket-hero-panel">
+                    <div class="ticket-hero-copy">
+                        <p class="eyebrow">Central de suporte</p>
+                        <h1>Abrir chamado</h1>
+                        <p class="hero-copy">Registre o problema com as informações essenciais para que o time de
+                            suporte possa responder rapidamente.</p>
                     </div>
 
-                    <div class="meta-pill">
-                        <div class="meta-icon"><i class="fa-solid fa-headset"></i></div>
-                        <div>
-                            <p class="meta-title">Canal ativo</p>
-                            <p class="meta-value">Suporte corporativo</p>
+                    <div class="ticket-meta-grid">
+                        <div class="meta-pill">
+                            <div class="meta-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                            <div>
+                                <p class="meta-title">Tempo médio</p>
+                                <p class="meta-value">Até 4 horas úteis</p>
+                            </div>
+                        </div>
+
+                        <div class="meta-pill">
+                            <div class="meta-icon"><i class="fa-solid fa-headset"></i></div>
+                            <div>
+                                <p class="meta-title">Canal ativo</p>
+                                <p class="meta-value">Suporte corporativo</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-
-            <section class="ticket-layout">
-                <article class="ticket-form-panel">
-                    <div class="panel-heading">
-                        <div>
-                            <p class="eyebrow">Novo atendimento</p>
-                            <h2>Informações do chamado</h2>
-                        </div>
-                        <p class="panel-copy">Preencha apenas o que é necessário para classificar e encaminhar o atendimento.</p>
-                    </div>
-
-                    <form id="callForm" class="ticket-form-grid">
-                        <div class="form-field">
-                            <label for="name">Nome completo</label>
-                            <input type="text" id="name" name="name" autocomplete="name" placeholder="Digite seu nome" required>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" autocomplete="email" placeholder="Digite seu e-mail" required>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="Digite seu telefone" required>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="category">Categoria</label>
-                            <select id="category" name="category" required>
-                                <option value="">Selecione</option>
-                                <option value="Infraestrutura">Infraestrutura</option>
-                                <option value="Acesso e login">Acesso e login</option>
-                                <option value="Software">Software</option>
-                                <option value="Atendimento">Atendimento</option>
-                            </select>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="priority">Prioridade</label>
-                            <select id="priority" name="priority" required>
-                                <option value="">Selecione</option>
-                                <option value="Baixa">Baixa</option>
-                                <option value="Média">Média</option>
-                                <option value="Alta">Alta</option>
-                                <option value="Crítica">Crítica</option>
-                            </select>
-                        </div>
-
-                        <div class="form-field full-width">
-                            <label for="subject">Assunto</label>
-                            <input type="text" id="subject" name="subject" placeholder="Ex.: Falha no acesso ao sistema" required>
-                        </div>
-
-                        <div class="form-field full-width">
-                            <label for="problem">Descrição do problema</label>
-                            <textarea id="problem" name="problem" rows="6" placeholder="Descreva o ocorrido, impacto e passos já realizados" required></textarea>
-                        </div>
-
-                        <input type="hidden" id="date" name="date">
-
-                        <div class="form-actions full-width">
-                            <button type="submit" class="primary-submit">Salvar chamado</button>
-                        </div>
-                    </form>
                 </article>
 
-                <aside class="ticket-guidance-panel">
-                    <div class="guidance-header">
-                        <p class="eyebrow">O que acontece agora</p>
-                        <h2>Fluxo de atendimento</h2>
-                    </div>
+                <section class="ticket-layout">
+                    <article class="ticket-form-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="eyebrow">Novo atendimento</p>
+                                <h2>Informações do chamado</h2>
+                            </div>
+                            <p class="panel-copy">Preencha apenas o que é necessário para classificar e encaminhar o
+                                atendimento.</p>
+                        </div>
 
-                    <ul class="guidance-list">
-                        <li>
-                            <div class="guidance-bullet">1</div>
-                            <div>
-                                <h3>Classificação</h3>
-                                <p>Categoria e prioridade definem o nível de urgência do suporte.</p>
+                        <form id="callForm" class="ticket-form-grid">
+                            <div class="form-field">
+                                <label for="name">Nome completo</label>
+                                <input type="text" id="name" name="name" autocomplete="name"
+                                    placeholder="Digite seu nome" required>
                             </div>
-                        </li>
-                        <li>
-                            <div class="guidance-bullet">2</div>
-                            <div>
-                                <h3>Encaminhamento</h3>
-                                <p>O chamado entra na fila da equipe responsável e recebe SLA.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="guidance-bullet">3</div>
-                            <div>
-                                <h3>Resposta</h3>
-                                <p>O atendimento segue com atualização de status em tempo real.</p>
-                            </div>
-                        </li>
-                    </ul>
 
-                    <div class="guidance-note">
-                        <h3>Boa prática</h3>
-                        <p>Inclua impacto, horário do erro e qualquer erro exibido para acelerar a análise.</p>
-                    </div>
-                </aside>
+                            <div class="form-field">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" autocomplete="email"
+                                    placeholder="Digite seu e-mail" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="phone">Telefone</label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel"
+                                    placeholder="Digite seu telefone" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="category">Categoria</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Infraestrutura">Infraestrutura</option>
+                                    <option value="Acesso e login">Acesso e login</option>
+                                    <option value="Software">Software</option>
+                                    <option value="Atendimento">Atendimento</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="priority">Prioridade</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Baixa">Baixa</option>
+                                    <option value="Média">Média</option>
+                                    <option value="Alta">Alta</option>
+                                    <option value="Crítica">Crítica</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field full-width">
+                                <label for="subject">Assunto</label>
+                                <input type="text" id="subject" name="subject"
+                                    placeholder="Ex.: Falha no acesso ao sistema" required>
+                            </div>
+
+                            <div class="form-field full-width">
+                                <label for="problem">Descrição do problema</label>
+                                <textarea id="problem" name="problem" rows="6"
+                                    placeholder="Descreva o ocorrido, impacto e passos já realizados"
+                                    required></textarea>
+                            </div>
+
+                            <input type="hidden" id="date" name="date">
+
+                            <div class="form-actions full-width">
+                                <button type="submit" class="primary-submit">Salvar chamado</button>
+                            </div>
+                        </form>
+                    </article>
+
+                    <aside class="ticket-guidance-panel">
+                        <div class="guidance-header">
+                            <p class="eyebrow">O que acontece agora</p>
+                            <h2>Fluxo de atendimento</h2>
+                        </div>
+
+                        <ul class="guidance-list">
+                            <li>
+                                <div class="guidance-bullet">1</div>
+                                <div>
+                                    <h3>Classificação</h3>
+                                    <p>Categoria e prioridade definem o nível de urgência do suporte.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="guidance-bullet">2</div>
+                                <div>
+                                    <h3>Encaminhamento</h3>
+                                    <p>O chamado entra na fila da equipe responsável e recebe SLA.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="guidance-bullet">3</div>
+                                <div>
+                                    <h3>Resposta</h3>
+                                    <p>O atendimento segue com atualização de status em tempo real.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="guidance-note">
+                            <h3>Boa prática</h3>
+                            <p>Inclua impacto, horário do erro e qualquer erro exibido para acelerar a análise.</p>
+                        </div>
+                    </aside>
+                </section>
             </section>
-        </section>
         </div>
     </div>
 
@@ -227,6 +235,7 @@
 
     <script src="/js/theme.js"></script>
     <script src="/js/abrir-chamado.js"></script>
+    <script src="/js/auth.js"></script>
 </body>
 
 </html>
