@@ -218,17 +218,28 @@
             <div class="contact-grid">
                 <div class="contact-form-card">
                     <h2>Fale com nosso time</h2>
-                    <p>Preencha o formulário e nossa equipe entrará em contato para apresentar a solução ideal para sua
-                        empresa.</p>
+                    <p>Preencha o formulário abaixo. Nosso time de atendimento fará uma análise e entrará em contato com
+                        proposta e o link de cadastro quando apropriado.</p>
                     <form id="contact-form">
-                        <label for="name">Nome</label>
-                        <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                        <div class="row">
+                            <div>
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" name="name" placeholder="Digite seu nome" required>
+                            </div>
+                            <div>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                            </div>
+                        </div>
+
                         <label for="phone">Telefone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required>
+                        <input type="tel" id="phone" name="phone" placeholder="(00) 90000-0000" required>
+
+                        <label for="company">Empresa (opcional)</label>
+                        <input type="text" id="company" name="company" placeholder="Nome da empresa">
+
                         <label for="message">Mensagem</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Escreva sua mensagem"
+                        <textarea id="message" name="message" rows="5" placeholder="Conte brevemente sobre sua demanda"
                             required></textarea>
                         <button type="submit" class="button-primary">Enviar mensagem</button>
                         <div class="success-message" aria-live="polite" role="status">Obrigado! Entraremos em contato em
@@ -237,15 +248,14 @@
                 </div>
                 <aside class="contact-details-card">
                     <h3>Vamos conversar</h3>
-                    <p>Quer contratar agora? Fale com nossos consultores e receba uma proposta personalizada sem
-                        compromisso.</p>
+                    <p>Fale com nossos consultores para receber uma proposta personalizada e atendimento humano. Após a
+                        análise, encaminharemos o link de cadastro quando for o momento certo.</p>
                     <ul>
                         <li><i class="fas fa-check"></i> Demonstração gratuita</li>
-                        <li><i class="fas fa-check"></i> Proposta rápida</li>
-                        <li><i class="fas fa-check"></i> Planejamento estratégico</li>
+                        <li><i class="fas fa-check"></i> Proposta sob medida</li>
+                        <li><i class="fas fa-check"></i> Acompanhamento durante implementação</li>
+                        <li><i class="fas fa-check"></i> Suporte pós-implementação</li>
                     </ul>
-                    <a href="/assets/Login/cadastro-de-conta.html" class="button-secondary" target="_blank">Começar
-                        agora</a>
                 </aside>
             </div>
         </section>
@@ -290,7 +300,7 @@
                         href="https://wa.me/5511970447821?text=Ol%C3%A1!%20Preciso%20de%20suporte" target="_blank">+55
                         (11) 97044-7821</a></p>
                 <p class="contact-item"><i class="far fa-envelope"></i> <a
-                        href="mailto:contato@zetatech.com">contato@zetatech.com</a></p>
+                        href="mailto:contato@zetatech.com">contatozetatech@outlook.com</a></p>
                 <p class="contact-item"><i class="fas fa-map-marker-alt"></i> Avenida Paulista, 1374 - São Paulo-SP
                 </p>
             </div>
@@ -302,6 +312,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="/js/theme.js" defer></script>
     <script src="/js/home.js" defer></script>
 </body>

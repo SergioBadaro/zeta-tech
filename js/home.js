@@ -1,4 +1,6 @@
-﻿const header = document.getElementById("header");
+﻿emailjs.init("0-DAf5hBZS-G9Um5t");
+
+const header = document.getElementById("header");
 const hamburger = document.getElementById("hamburger");
 const menu = document.getElementById("menu");
 const navLinks = document.querySelectorAll("#menu li a");
@@ -155,14 +157,45 @@ if (faqGrid) {
 }
 
 if (contactForm) {
-  contactForm.addEventListener("submit", (event) => {
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    contactForm.reset();
-    if (successMessage) {
-      successMessage.classList.add("visible");
-      setTimeout(() => {
-        successMessage.classList.remove("visible");
-      }, 4500);
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Enviando...";
+
+    try {
+      await emailjs.send("service_zxoyhzu", "template_5pg01c1", {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        telefone: document.getElementById("phone").value,
+        empresa: document.getElementById("company").value,
+        message: document.getElementById("message").value,
+      });
+
+      contactForm.reset();
+
+      if (successMessage) {
+        successMessage.textContent =
+          "Mensagem enviada com sucesso! Entraremos em contato em breve.";
+        successMessage.classList.add("visible");
+
+        setTimeout(() => {
+          successMessage.classList.remove("visible");
+        }, 5000);
+      }
+    } catch (error) {
+      console.error(error);
+
+      if (successMessage) {
+        successMessage.textContent =
+          "Não foi possível enviar a mensagem. Tente novamente.";
+        successMessage.classList.add("visible");
+      }
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = "Enviar mensagem";
     }
   });
 }
