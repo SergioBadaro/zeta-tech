@@ -1,9 +1,6 @@
-// =============================
-// INIT (SEGURANÇA DOM)
-// =============================
 document.addEventListener("DOMContentLoaded", () => {
   // =============================
-  // TOGGLE SENHAS (GLOBAL)
+  // TOGGLE SENHAS
   // =============================
   function setupPasswordToggle(toggleBtnId, inputId) {
     const toggleBtn = document.getElementById(toggleBtnId);
@@ -23,18 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // LOGIN
   setupPasswordToggle("togglePassword", "password");
-
-  // CADASTRO
   setupPasswordToggle("toggleConfirmPassword", "confirmPassword");
-
-  // RESET SENHA (MODAL)
   setupPasswordToggle("toggleNewPassword", "newPassword");
   setupPasswordToggle("toggleConfirmPasswordForgot", "confirmPasswordForgot");
 
   // =============================
-  // MODAL AUTH
+  // MODAL ALERTA
   // =============================
   function showAuthModal(title, message, type = "error") {
     const modal = document.getElementById("authModal");
@@ -43,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleEl = document.getElementById("authModalTitle");
     const messageEl = document.getElementById("authModalMessage");
     const iconEl = document.getElementById("authModalIcon");
-    const buttonEl = document.getElementById("authModalButton");
 
     if (titleEl) titleEl.textContent = title;
     if (messageEl) messageEl.textContent = message;
@@ -56,26 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("auth-modal--show");
     modal.setAttribute("aria-hidden", "false");
 
-    if (buttonEl) buttonEl.focus();
+    setTimeout(() => {
+      modal.classList.remove("auth-modal--show");
+      modal.setAttribute("aria-hidden", "true");
+    }, 2000);
   }
-
-  function hideAuthModal() {
-    const modal = document.getElementById("authModal");
-    if (!modal) return;
-
-    modal.classList.remove("auth-modal--show");
-    modal.setAttribute("aria-hidden", "true");
-  }
-
-  document
-    .getElementById("authModalClose")
-    ?.addEventListener("click", hideAuthModal);
-  document
-    .getElementById("authModalButton")
-    ?.addEventListener("click", hideAuthModal);
-  document
-    .getElementById("authModalOverlay")
-    ?.addEventListener("click", hideAuthModal);
 
   // =============================
   // LOGIN
@@ -89,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password")?.value;
 
     if (!email || !password) {
-      showAuthModal("Dados incompletos", "Preencha email e senha.");
+      showAuthModal("Atenção", "Preencha email e senha.");
       return;
     }
 
@@ -103,14 +79,71 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (!response.ok) {
-        showAuthModal("Falha no login", data.message);
+        showAuthModal("Falha no login", data.message || "Erro ao entrar");
         return;
       }
 
       localStorage.setItem("user", JSON.stringify(data));
+
       window.location.href = "/assets/index.html";
     } catch (error) {
-      showAuthModal("Erro de conexão", "Servidor offline.");
+      showAuthModal("Erro de conexão", "Servidor indisponível.");
+    }
+  });
+
+  // =============================
+  // CADASTRO
+  // =============================
+  const registerForm = document.getElementById("registerForm");
+
+  registerForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const usuario = {
+      nome: document.getElementById("name")?.value.trim(),
+      email: document.getElementById("email")?.value.trim(),
+      telefone: document.getElementById("phone")?.value.trim(),
+      senha: document.getElementById("password")?.value,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(usuario),
+      });
+
+      const text = await response.text();
+      let data = {};
+
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch (e) {}
+
+      if (!response.ok) {
+        showAuthModal(
+          "Erro ao cadastrar",
+          data.message || "Não foi possível criar a conta",
+          "error",
+        );
+        return;
+      }
+
+      showAuthModal(
+        "Conta criada com sucesso",
+        "Você será redirecionado para o login",
+        "success",
+      );
+
+      setTimeout(() => {
+        window.location.href = "/assets/Login/login-de-usuario.html";
+      }, 1500);
+    } catch (error) {
+      showAuthModal(
+        "Erro de conexão",
+        "Não foi possível conectar ao servidor",
+        "error",
+      );
     }
   });
 
@@ -128,64 +161,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeModal?.addEventListener("click", () => {
     forgotModal?.classList.add("hidden");
-  });
-
-  // =============================
-  // RESET SENHA
-  // =============================
-  const resetBtn = document.getElementById("resetBtn");
-  const forgotMessage = document.getElementById("forgotMessage");
-
-  resetBtn?.addEventListener("click", async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("forgotEmail")?.value.trim();
-    const newPassword = document.getElementById("newPassword")?.value;
-    const confirmPassword = document.getElementById(
-      "confirmPasswordForgot",
-    )?.value;
-
-    if (!email || !newPassword || !confirmPassword) {
-      forgotMessage.textContent = "Preencha todos os campos.";
-      return;
-    }
-
-    if (newPassword !== confirmPassword) {
-      forgotMessage.textContent = "As senhas não conferem.";
-      return;
-    }
-
-    if (newPassword.length < 6) {
-      forgotMessage.textContent = "Senha fraca (mínimo 6 caracteres).";
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "http://localhost:3000/api/auth/forgot-password",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, newPassword }),
-        },
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        forgotMessage.textContent = data.message || "Erro ao redefinir senha.";
-        return;
-      }
-
-      forgotMessage.style.color = "green";
-      forgotMessage.textContent = "Senha alterada com sucesso!";
-
-      setTimeout(() => {
-        forgotModal?.classList.add("hidden");
-        window.location.href = "/assets/Login/login-de-usuario.html";
-      }, 1500);
-    } catch (error) {
-      forgotMessage.textContent = "Erro de conexão com servidor.";
-    }
   });
 });
