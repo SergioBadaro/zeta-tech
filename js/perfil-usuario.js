@@ -1,116 +1,137 @@
 const form = document.getElementById("profileForm");
 const successMessage = document.getElementById("successMessage");
-const photoUpload = document.getElementById("photoUpload");
+
 const profilePicture = document.getElementById("profilePicture");
 const profilePicturePreview = document.getElementById("profilePicturePreview");
+
 const summaryEmail = document.getElementById("summaryEmail");
 const summaryPhone = document.getElementById("summaryPhone");
 
-const PROFILE_KEY = "profileData";
+const photoUpload = document.getElementById("photoUpload");
 
-function carregarFotoSalva() {
-  const savedPhoto = localStorage.getItem("profilePhoto");
-  if (savedPhoto && window.applyProfilePhoto) {
-    window.applyProfilePhoto(savedPhoto);
-  }
+const USER_KEY = "user";
+const PHOTO_KEY = "profilePhoto";
+
+// =============================
+// PEGAR USUÁRIO LOGADO
+// =============================
+function getUser() {
+  return JSON.parse(localStorage.getItem(USER_KEY)) || null;
 }
 
-function carregarDadosSalvos() {
-  const savedProfile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+// =============================
+// PREENCHER PERFIL AUTOMATICAMENTE
+// =============================
+function loadProfile() {
+  const user = getUser();
+  if (!user) return;
 
-  Object.entries(savedProfile).forEach(([field, value]) => {
-    const input = document.getElementById(field);
-    if (input && value) {
-      input.value = value;
-    }
-  });
+  // inputs do formulário
+  const nome = document.getElementById("nome");
+  const email = document.getElementById("email");
+  const telefone = document.getElementById("telefone");
 
-  if (savedProfile.email) {
-    summaryEmail.textContent = savedProfile.email;
-  }
+  if (nome) nome.value = user.nome || "";
+  if (email) email.value = user.email || "";
+  if (telefone) telefone.value = user.telefone || "";
 
-  if (savedProfile.telefone) {
-    summaryPhone.textContent = savedProfile.telefone;
-  }
+  // resumo lateral
+  if (summaryEmail) summaryEmail.textContent = user.email || "-";
+  if (summaryPhone) summaryPhone.textContent = user.telefone || "-";
 }
 
-function atualizarResumo() {
-  const campos = {
-    email: document.getElementById("email").value,
-    telefone: document.getElementById("telefone").value,
-  };
-
-  if (campos.email) {
-    summaryEmail.textContent = campos.email;
-  }
-
-  if (campos.telefone) {
-    summaryPhone.textContent = campos.telefone;
-  }
+// =============================
+// ATUALIZAR LOCALSTORAGE
+// =============================
+function updateUser(data) {
+  const current = getUser() || {};
+  const updated = { ...current, ...data };
+  localStorage.setItem(USER_KEY, JSON.stringify(updated));
 }
 
-form.addEventListener("submit", function (event) {
+// =============================
+// SALVAR PERFIL
+// =============================
+form?.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const profileData = {
-    nome: document.getElementById("nome").value,
-    email: document.getElementById("email").value,
-    telefone: document.getElementById("telefone").value,
-    cargo: document.getElementById("cargo").value,
-  };
+  const nome = document.getElementById("nome")?.value.trim();
+  const email = document.getElementById("email")?.value.trim();
+  const telefone = document.getElementById("telefone")?.value.trim();
+  const cargo = document.getElementById("cargo")?.value.trim();
 
-  localStorage.setItem(PROFILE_KEY, JSON.stringify(profileData));
-  atualizarResumo();
+  if (!nome || !email || !telefone) {
+    alert("Preencha os campos obrigatórios.");
+    return;
+  }
 
-  successMessage.style.display = "block";
-  setTimeout(() => {
-    successMessage.style.display = "none";
-  }, 3000);
-});
+  updateUser({ nome, email, telefone, cargo });
 
-if (photoUpload) {
-  photoUpload.addEventListener("change", (event) => {
-    const file = event.target.files[0];
+  if (summaryEmail) summaryEmail.textContent = email;
+  if (summaryPhone) summaryPhone.textContent = telefone;
 
-    if (!file) {
-      return;
-    }
+  if (successMessage) {
+    successMessage.style.display = "block";
 
-    if (!file.type.startsWith("image/")) {
-      alert("Selecione uma imagem válida.");
-      photoUpload.value = "";
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (loadEvent) => {
-      const imageData = loadEvent.target.result;
-      localStorage.setItem("profilePhoto", imageData);
-      if (window.applyProfilePhoto) {
-        window.applyProfilePhoto(imageData);
-      }
-      photoUpload.value = "";
-    };
-
-    reader.readAsDataURL(file);
-  });
-}
-
-function alterarFoto() {
-  photoUpload.click();
-}
-
-["nome", "email", "telefone", "cargo"].forEach((field) => {
-  const element = document.getElementById(field);
-  if (element) {
-    element.addEventListener("input", atualizarResumo);
+    setTimeout(() => {
+      successMessage.style.display = "none";
+    }, 2500);
   }
 });
 
-carregarFotoSalva();
-carregarDadosSalvos();
+// =============================
+// FOTO DE PERFIL
+// =============================
+function applyPhoto(image) {
+  if (profilePicture) profilePicture.src = image;
+  if (profilePicturePreview) profilePicturePreview.src = image;
+}
 
-// principal.js
-document.getElementById("open_btn").addEventListener("click", function () {
-  document.getElementById("sidebar").classList.toggle("open-sidebar");
+photoUpload?.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Selecione uma imagem válida.");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const img = e.target.result;
+
+    localStorage.setItem(PHOTO_KEY, img);
+    applyPhoto(img);
+  };
+
+  reader.readAsDataURL(file);
+});
+
+// =============================
+// CARREGAR FOTO SALVA
+// =============================
+function loadPhoto() {
+  const photo = localStorage.getItem(PHOTO_KEY);
+  if (photo) applyPhoto(photo);
+}
+
+// =============================
+// ALTERAR FOTO
+// =============================
+function alterarFoto() {
+  photoUpload?.click();
+}
+
+// =============================
+// INIT
+// =============================
+loadProfile();
+loadPhoto();
+
+// =============================
+// SIDEBAR
+// =============================
+document.getElementById("open_btn")?.addEventListener("click", () => {
+  document.getElementById("sidebar")?.classList.toggle("open-sidebar");
 });
