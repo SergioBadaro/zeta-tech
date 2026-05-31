@@ -1,5 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
   // =============================
+  // TOAST SYSTEM
+  // =============================
+  function showToast(message, type = "info") {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    toast.classList.add("toast", type);
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 2500);
+  }
+
+  // =============================
   // TOGGLE SENHAS
   // =============================
   function setupPasswordToggle(toggleBtnId, inputId) {
@@ -26,34 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupPasswordToggle("toggleConfirmPasswordForgot", "confirmPasswordForgot");
 
   // =============================
-  // MODAL ALERTA
-  // =============================
-  function showAuthModal(title, message, type = "error") {
-    const modal = document.getElementById("authModal");
-    if (!modal) return alert(message);
-
-    const titleEl = document.getElementById("authModalTitle");
-    const messageEl = document.getElementById("authModalMessage");
-    const iconEl = document.getElementById("authModalIcon");
-
-    if (titleEl) titleEl.textContent = title;
-    if (messageEl) messageEl.textContent = message;
-
-    if (iconEl) {
-      iconEl.textContent = type === "success" ? "✓" : "!";
-      iconEl.classList.toggle("success", type === "success");
-    }
-
-    modal.classList.add("auth-modal--show");
-    modal.setAttribute("aria-hidden", "false");
-
-    setTimeout(() => {
-      modal.classList.remove("auth-modal--show");
-      modal.setAttribute("aria-hidden", "true");
-    }, 2000);
-  }
-
-  // =============================
   // LOGIN
   // =============================
   const loginForm = document.getElementById("loginForm");
@@ -65,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password")?.value;
 
     if (!email || !password) {
-      showAuthModal("Atenção", "Preencha email e senha.");
+      showToast("Preencha email e senha", "error");
       return;
     }
 
@@ -79,14 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (!response.ok) {
-        showAuthModal("Falha no login", data.message || "Erro ao entrar");
+        showToast(data.message || "Erro ao entrar", "error");
         return;
       }
 
+      showToast("Login realizado com sucesso!", "success");
+
       localStorage.setItem("user", JSON.stringify(data));
-      window.location.href = "/assets/index.html";
+
+      setTimeout(() => {
+        window.location.href = "/assets/index.html";
+      }, 1200);
     } catch (error) {
-      showAuthModal("Erro de conexão", "Servidor indisponível.");
+      showToast("Servidor indisponível", "error");
     }
   });
 
@@ -105,17 +100,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmarSenha = document.getElementById("confirmPassword")?.value;
 
     if (!nome || !email || !telefone || !senha || !confirmarSenha) {
-      showAuthModal("Campos obrigatórios", "Preencha todos os campos.");
+      showToast("Preencha todos os campos", "error");
       return;
     }
 
     if (senha.length < 6) {
-      showAuthModal("Senha fraca", "A senha deve ter no mínimo 6 caracteres.");
+      showToast("Senha muito fraca", "error");
       return;
     }
 
     if (senha !== confirmarSenha) {
-      showAuthModal("Senhas diferentes", "A confirmação de senha não confere.");
+      showToast("As senhas não conferem", "error");
       return;
     }
 
@@ -129,34 +124,28 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (!response.ok) {
-        showAuthModal("Erro ao cadastrar", data.message || "Erro inesperado");
+        showToast(data.message || "Erro ao cadastrar", "error");
         return;
       }
 
-      showAuthModal(
-        "Conta criada com sucesso",
-        "Você será redirecionado para o login",
-        "success",
-      );
+      showToast("Conta criada com sucesso!", "success");
 
       setTimeout(() => {
         window.location.href = "/assets/Login/login-de-usuario.html";
-      }, 1500);
+      }, 1200);
     } catch (error) {
-      showAuthModal("Erro de conexão", "Servidor indisponível.");
+      showToast("Servidor indisponível", "error");
     }
   });
 
   // =============================
-  // MODAL RECUPERAR SENHA
+  // RESET PASSWORD
   // =============================
   const openForgot = document.getElementById("openForgot");
   const forgotModal = document.getElementById("forgotModal");
   const closeModal = document.getElementById("closeModal");
 
   const resetBtn = document.getElementById("resetBtn");
-  const forgotMessage = document.getElementById("forgotMessage");
-
   const forgotEmail = document.getElementById("forgotEmail");
   const newPassword = document.getElementById("newPassword");
   const confirmPasswordForgot = document.getElementById(
@@ -172,9 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     forgotModal?.classList.add("hidden");
   });
 
-  // =============================
-  // RESET PASSWORD (CORRIGIDO)
-  // =============================
   resetBtn?.addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -182,20 +168,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const senha = newPassword?.value;
     const confirmar = confirmPasswordForgot?.value;
 
-    forgotMessage.style.color = "red";
-
     if (!email || !senha || !confirmar) {
-      forgotMessage.textContent = "Preencha todos os campos.";
+      showToast("Preencha todos os campos", "error");
       return;
     }
 
     if (senha !== confirmar) {
-      forgotMessage.textContent = "As senhas não conferem.";
+      showToast("As senhas não conferem", "error");
       return;
     }
 
     if (senha.length < 6) {
-      forgotMessage.textContent = "A senha deve ter no mínimo 6 caracteres.";
+      showToast("Senha muito fraca", "error");
       return;
     }
 
@@ -212,19 +196,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
 
       if (!response.ok) {
-        forgotMessage.textContent = data.message || "Erro ao redefinir senha.";
+        showToast(data.message || "Erro ao redefinir senha", "error");
         return;
       }
 
-      forgotMessage.style.color = "green";
-      forgotMessage.textContent = "Senha alterada com sucesso!";
+      showToast("Senha alterada com sucesso!", "success");
 
       setTimeout(() => {
         forgotModal?.classList.add("hidden");
         window.location.href = "/assets/Login/login-de-usuario.html";
-      }, 1500);
+      }, 1200);
     } catch (error) {
-      forgotMessage.textContent = "Erro de conexão com servidor.";
+      showToast("Servidor indisponível", "error");
     }
   });
 });
