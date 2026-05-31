@@ -2,6 +2,9 @@ const db = require("../config/database");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+// =============================
+// REGISTER
+// =============================
 exports.register = async (req, res) => {
   try {
     const { nome, email, telefone, senha } = req.body;
@@ -20,9 +23,8 @@ exports.register = async (req, res) => {
     const senhaHash = await bcrypt.hash(senha, 10);
 
     await db.query(
-      `INSERT INTO usuarios
-      (nome,email,telefone,senha)
-      VALUES (?,?,?,?)`,
+      `INSERT INTO usuarios (nome, email, telefone, senha)
+       VALUES (?, ?, ?, ?)`,
       [nome, email, telefone, senhaHash],
     );
 
@@ -30,14 +32,16 @@ exports.register = async (req, res) => {
       message: "Usuário cadastrado",
     });
   } catch (error) {
-    console.error("ERRO DETALHADO:", error);
-
+    console.error("ERRO REGISTER:", error);
     return res.status(500).json({
-      message: error.message,
+      message: "Erro no servidor",
     });
   }
 };
 
+// =============================
+// LOGIN
+// =============================
 exports.login = async (req, res) => {
   try {
     const { email, senha } = req.body;
@@ -54,16 +58,17 @@ exports.login = async (req, res) => {
 
     if (rows.length === 0) {
       return res.status(404).json({
-        message: "Usuário não encontrado. Faça cadastro.",
+        message: "Usuário não encontrado.",
       });
     }
 
     const usuario = rows[0];
+
     const senhaValida = await bcrypt.compare(senha, usuario.senha);
 
     if (!senhaValida) {
       return res.status(401).json({
-        message: "Email ou senha incorretos.",
+        message: "Senha incorreta.",
       });
     }
 
@@ -73,8 +78,8 @@ exports.login = async (req, res) => {
       { expiresIn: "8h" },
     );
 
-    return res.status(200).json({
-      message: "Login realizado com sucesso.",
+    return res.json({
+      message: "Login realizado com sucesso",
       token,
       user: {
         id: usuario.id,
@@ -85,7 +90,48 @@ exports.login = async (req, res) => {
   } catch (error) {
     console.error("ERRO LOGIN:", error);
     return res.status(500).json({
-      message: error.message,
+      message: "Erro no servidor",
+    });
+  }
+};
+
+// =============================
+// FORGOT PASSWORD (RESET)
+// =============================
+exports.forgotPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      return res.status(400).json({
+        message: "Email e nova senha são obrigatórios.",
+      });
+    }
+
+    const [rows] = await db.query("SELECT * FROM usuarios WHERE email = ?", [
+      email,
+    ]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({
+        message: "Email não encontrado.",
+      });
+    }
+
+    const senhaHash = await bcrypt.hash(newPassword, 10);
+
+    await db.query("UPDATE usuarios SET senha = ? WHERE email = ?", [
+      senhaHash,
+      email,
+    ]);
+
+    return res.json({
+      message: "Senha atualizada com sucesso.",
+    });
+  } catch (error) {
+    console.error("ERRO FORGOT PASSWORD:", error);
+    return res.status(500).json({
+      message: "Erro interno no servidor",
     });
   }
 };
