@@ -4,8 +4,11 @@ const successMessage = document.getElementById("successMessage");
 const profilePicture = document.getElementById("profilePicture");
 const profilePicturePreview = document.getElementById("profilePicturePreview");
 
+const summaryNome = document.getElementById("summaryNome");
 const summaryEmail = document.getElementById("summaryEmail");
 const summaryPhone = document.getElementById("summaryPhone");
+const summaryCargo = document.getElementById("summaryCargo");
+const summaryEmpresa = document.getElementById("summaryEmpresa");
 
 const photoUpload = document.getElementById("photoUpload");
 
@@ -30,14 +33,21 @@ function loadProfile() {
   const nome = document.getElementById("nome");
   const email = document.getElementById("email");
   const telefone = document.getElementById("telefone");
+  const cargo = document.getElementById("cargo");
+  const empresa = document.getElementById("empresa");
 
   if (nome) nome.value = user.nome || "";
   if (email) email.value = user.email || "";
   if (telefone) telefone.value = user.telefone || "";
+  if (cargo) cargo.value = user.cargo || "";
+  if (empresa) empresa.value = user.empresa || "";
 
   // resumo lateral
+  if (summaryNome) summaryNome.textContent = user.nome || "-";
   if (summaryEmail) summaryEmail.textContent = user.email || "-";
   if (summaryPhone) summaryPhone.textContent = user.telefone || "-";
+  if (summaryCargo) summaryCargo.textContent = user.cargo || "-";
+  if (summaryEmpresa) summaryEmpresa.textContent = user.empresa || "-";
 }
 
 // =============================
@@ -59,16 +69,20 @@ form?.addEventListener("submit", (event) => {
   const email = document.getElementById("email")?.value.trim();
   const telefone = document.getElementById("telefone")?.value.trim();
   const cargo = document.getElementById("cargo")?.value.trim();
+  const empresa = document.getElementById("empresa")?.value.trim();
 
   if (!nome || !email || !telefone) {
     alert("Preencha os campos obrigatórios.");
     return;
   }
 
-  updateUser({ nome, email, telefone, cargo });
+  updateUser({ nome, email, telefone, cargo, empresa });
 
+  if (summaryNome) summaryNome.textContent = nome;
   if (summaryEmail) summaryEmail.textContent = email;
   if (summaryPhone) summaryPhone.textContent = telefone;
+  if (summaryCargo) summaryCargo.textContent = cargo || "-";
+  if (summaryEmpresa) summaryEmpresa.textContent = empresa || "-";
 
   if (successMessage) {
     successMessage.style.display = "block";

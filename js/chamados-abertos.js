@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ...call,
       createdAt: call.createdAt || call.date || new Date().toISOString(),
       completed: Boolean(call.completed),
-      status: call.status || (Boolean(call.completed) ? "concluído" : "pendente"),
+      status:
+        call.status || (Boolean(call.completed) ? "concluído" : "pendente"),
       slaDate: call.slaDate || call.date || null,
     }));
   }
@@ -68,7 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const statusLabel = call.completed ? "Concluído" : "Pendente";
       const slaDate = call.slaDate || call.date;
-      const formattedSla = slaDate ? new Date(slaDate).toLocaleDateString("pt-BR") : "Não informado";
+      const formattedSla = slaDate
+        ? new Date(slaDate).toLocaleDateString("pt-BR")
+        : "Não informado";
       const problemSummary = call.problem || "Sem descrição registrada";
 
       card.innerHTML = `
@@ -78,11 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
               <span class="status-tag ${statusClass}">${statusLabel}</span>
               <span class="card-time">${call.createdAt ? new Date(call.createdAt).toLocaleString("pt-BR") : "Data não informada"}</span>
             </div>
-            <p class="call-summary-line">Problema: ${problemSummary}</p>
+            <p class="call-summary-line">${problemSummary}</p>
           </div>
 
-          <button class="call-toggle" type="button" aria-expanded="false">
-            <span>Ver detalhes</span>
+          <button class="call-toggle" type="button" aria-expanded="false" aria-label="Expandir detalhes">
             <i class="fas fa-chevron-down"></i>
           </button>
         </div>
@@ -125,14 +127,18 @@ document.addEventListener("DOMContentLoaded", () => {
       buttonContainer.classList.add("card-buttons");
 
       const completeButton = document.createElement("button");
-      completeButton.textContent = "Concluir";
+      completeButton.textContent = "✓ Concluir";
       completeButton.classList.add("complete-btn");
-      completeButton.addEventListener("click", () => completeCall(Number(card.dataset.index), card));
+      completeButton.addEventListener("click", () =>
+        completeCall(Number(card.dataset.index), card),
+      );
 
       const deleteButton = document.createElement("button");
-      deleteButton.textContent = "Deletar";
+      deleteButton.textContent = "✕ Remover";
       deleteButton.classList.add("delete-btn");
-      deleteButton.addEventListener("click", () => deleteCall(Number(card.dataset.index)));
+      deleteButton.addEventListener("click", () =>
+        deleteCall(Number(card.dataset.index)),
+      );
 
       buttonContainer.appendChild(completeButton);
       buttonContainer.appendChild(deleteButton);
@@ -141,19 +147,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const toggleButton = card.querySelector(".call-toggle");
       const details = card.querySelector(".card-details");
-      const toggleLabel = toggleButton.querySelector("span");
+      const cardHeader = card.querySelector(".card-header");
 
       details.classList.remove("expanded");
       toggleButton.classList.remove("expanded");
       toggleButton.setAttribute("aria-expanded", "false");
-      toggleLabel.textContent = "Ver detalhes";
 
-      toggleButton.addEventListener("click", () => {
+      // Função para expandir/recolher
+      const toggleDetails = () => {
         const isExpandedNow = !details.classList.contains("expanded");
         details.classList.toggle("expanded", isExpandedNow);
         toggleButton.classList.toggle("expanded", isExpandedNow);
         toggleButton.setAttribute("aria-expanded", String(isExpandedNow));
-        toggleLabel.textContent = isExpandedNow ? "Ocultar detalhes" : "Ver detalhes";
+      };
+
+      // Clique no botão da seta
+      toggleButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleDetails();
+      });
+
+      // Clique em qualquer lugar do card header
+      cardHeader.addEventListener("click", (e) => {
+        if (e.target !== toggleButton && !toggleButton.contains(e.target)) {
+          toggleDetails();
+        }
       });
 
       cardsContainer.appendChild(card);
@@ -171,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
           action: "completed",
           call: calls[index],
         },
-      })
+      }),
     );
 
     cardElement.classList.remove("pending");
@@ -196,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
           action: "deleted",
           call: removedCall,
         },
-      })
+      }),
     );
     loadCalls();
   }

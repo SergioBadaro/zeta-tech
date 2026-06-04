@@ -128,22 +128,22 @@
                                 <strong class="mini-stat-value">Ativa e verificada</strong>
                             </div>
                         </div>
-
-                        <div class="mini-stat-card">
-                            <div class="mini-stat-icon"><i class="fa-solid fa-clock"></i></div>
-                            <div>
-                                <p class="mini-stat-label">Atualização</p>
-                                <strong class="mini-stat-value">Sempre alinhado</strong>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="summary-contact-list">
                         <div class="summary-contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-user"></i></div>
+                            <div>
+                                <p class="contact-label">Nome completo</p>
+                                <p class="contact-value" id="summaryNome">-</p>
+                            </div>
+                        </div>
+
+                        <div class="summary-contact-item">
                             <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
                             <div>
                                 <p class="contact-label">E-mail corporativo</p>
-                                <p class="contact-value" id="summaryEmail">contato@zeta-tech.com</p>
+                                <p class="contact-value" id="summaryEmail">-</p>
                             </div>
                         </div>
 
@@ -151,15 +151,23 @@
                             <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
                             <div>
                                 <p class="contact-label">Telefone</p>
-                                <p class="contact-value" id="summaryPhone">(11) 99999-0000</p>
+                                <p class="contact-value" id="summaryPhone">-</p>
+                            </div>
+                        </div>
+
+                        <div class="summary-contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-briefcase"></i></div>
+                            <div>
+                                <p class="contact-label">Cargo</p>
+                                <p class="contact-value" id="summaryCargo">-</p>
                             </div>
                         </div>
 
                         <div class="summary-contact-item">
                             <div class="contact-icon"><i class="fa-solid fa-building"></i></div>
                             <div>
-                                <p class="contact-label">Organização</p>
-                                <p class="contact-value">Zeta Tech</p>
+                                <p class="contact-label">Empresa</p>
+                                <p class="contact-value" id="summaryEmpresa">-</p>
                             </div>
                         </div>
                     </div>
@@ -211,6 +219,11 @@
                             <div class="form-field">
                                 <label for="cargo">Cargo</label>
                                 <input type="text" id="cargo" name="cargo" placeholder="Ex.: Analista de Suporte">
+                            </div>
+
+                            <div class="form-field">
+                                <label for="empresa">Empresa</label>
+                                <input type="text" id="empresa" name="empresa" placeholder="Digite o nome da empresa">
                             </div>
                         </div>
 
