@@ -107,15 +107,32 @@
         <div class="toolbar" aria-label="Filtros de chamados">
             <label class="toolbar-field" for="call-search">
                 <span>Buscar chamados</span>
-                <input type="search" id="call-search" placeholder="Nome, email, telefone ou problema">
+                <input type="search" id="call-search" placeholder="Ticket, nome, email, telefone ou problema">
             </label>
 
             <label class="toolbar-field" for="call-status-filter">
                 <span>Status</span>
                 <select id="call-status-filter">
                     <option value="all">Todos</option>
-                    <option value="open">Pendentes</option>
-                    <option value="completed">Concluídos</option>
+                    <option value="open">Em aberto</option>
+                    <option value="aberto">🟢 Aberto</option>
+                    <option value="em-analise">🟡 Em análise</option>
+                    <option value="em-atendimento">🔵 Em atendimento</option>
+                    <option value="aguardando-cliente">🟠 Aguardando cliente</option>
+                    <option value="resolvido">✅ Resolvido</option>
+                    <option value="fechado">⚫ Fechado</option>
+                    <option value="closed">Encerrados</option>
+                </select>
+            </label>
+
+            <label class="toolbar-field" for="call-priority-filter">
+                <span>Prioridade</span>
+                <select id="call-priority-filter">
+                    <option value="all">Todas</option>
+                    <option value="Baixa">Baixa</option>
+                    <option value="Média">Média</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Crítica">Crítica</option>
                 </select>
             </label>
         </div>
@@ -127,6 +144,7 @@
     </div>
 
     <script src="/js/theme.js"></script>
+    <script src="/js/ticket-model.js"></script>
     <script src="/js/chamados-abertos.js"></script>
     <script src="/js/auth.js"></script>
 </body>

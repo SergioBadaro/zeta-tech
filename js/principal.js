@@ -105,24 +105,21 @@ function renderSummary(calls) {
   summaryGrid.innerHTML = "";
 
   const totalCalls = calls.length;
-  const pendingCalls = calls.filter(
-    (call) => call.status === "pendente",
+  const openCalls = calls.filter((call) =>
+    TicketModel.isOpenStatus(call.status),
   ).length;
-  const completedCalls = calls.filter(
-    (call) => call.status === "concluído",
-  ).length;
-  const overdueCalls = calls.filter(
+  const closedCalls = totalCalls - openCalls;
+  const criticalCalls = calls.filter(
     (call) =>
-      call.status === "pendente" &&
-      call.slaDate &&
-      new Date(call.slaDate) < new Date(),
+      TicketModel.isOpenStatus(call.status) &&
+      (call.priority === "Crítica" || call.priority === "Alta"),
   ).length;
   const callsToday = calls.filter(
     (call) =>
       new Date(call.createdAt).toDateString() === new Date().toDateString(),
   ).length;
   const closeRate =
-    totalCalls === 0 ? 0 : Math.round((completedCalls / totalCalls) * 100);
+    totalCalls === 0 ? 0 : Math.round((closedCalls / totalCalls) * 100);
 
   const cards = [
     {
@@ -130,28 +127,28 @@ function renderSummary(calls) {
       value: totalCalls,
       accent: "#4f46e5",
       icon: "fa-layer-group",
-      footnote: `${callsToday} abertas hoje`,
+      footnote: `${callsToday} abertos hoje`,
     },
     {
-      label: "Pendentes",
-      value: pendingCalls,
-      accent: "#f59e0b",
+      label: "Em aberto",
+      value: openCalls,
+      accent: "#3b82f6",
       icon: "fa-hourglass-half",
-      footnote: `${overdueCalls} em atraso`,
+      footnote: `${calls.filter((c) => c.status === "em-atendimento").length} em atendimento`,
     },
     {
-      label: "Concluídos",
-      value: completedCalls,
+      label: "Encerrados",
+      value: closedCalls,
       accent: "#22c55e",
       icon: "fa-check-circle",
       footnote: `${closeRate}% taxa de encerramento`,
     },
     {
-      label: "Urgência",
-      value: overdueCalls,
+      label: "Alta prioridade",
+      value: criticalCalls,
       accent: "#ef4444",
       icon: "fa-exclamation-triangle",
-      footnote: "Ações prioritárias",
+      footnote: "Alta e Crítica em aberto",
     },
   ];
 
@@ -189,19 +186,19 @@ function renderSummary(calls) {
     const overviewItems = [
       {
         label: "Chamados em aberto",
-        value: pendingCalls,
+        value: openCalls,
         className: "active",
         accent: "#4f46e5",
       },
       {
-        label: "Chamados concluídos",
-        value: completedCalls,
+        label: "Chamados encerrados",
+        value: closedCalls,
         className: "success",
         accent: "#22c55e",
       },
       {
-        label: "Chamados com SLA crítico",
-        value: overdueCalls,
+        label: "Prioridade Alta/Crítica",
+        value: criticalCalls,
         className: "warning",
         accent: "#f59e0b",
       },
@@ -259,16 +256,13 @@ function renderStatusBars(calls) {
 
   statusBars.innerHTML = "";
 
-  const openCount = calls.filter((call) => call.status === "pendente").length;
-  const completedCount = calls.filter(
-    (call) => call.status === "concluído",
-  ).length;
   const total = calls.length || 1;
 
-  [
-    { label: "Pendentes", value: openCount, color: "#4f46e5" },
-    { label: "Concluídos", value: completedCount, color: "#22c55e" },
-  ].forEach((item) => {
+  TicketModel.STATUS_ORDER.map((statusId) => {
+    const config = TicketModel.getStatusConfig(statusId);
+    const value = calls.filter((call) => call.status === statusId).length;
+    return { label: `${config.icon} ${config.label}`, value, color: config.color };
+  }).forEach((item) => {
     const row = document.createElement("div");
     row.className = "status-bar-row";
     const percentage = Math.round((item.value / total) * 100);
@@ -288,7 +282,7 @@ function renderRecentCalls(calls) {
   recentCalls.innerHTML = "";
 
   const sorted = [...calls]
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt))
     .slice(0, 6);
 
   if (sorted.length === 0) {
@@ -304,23 +298,23 @@ function renderRecentCalls(calls) {
     const item = document.createElement("article");
     item.className = "recent-item";
 
-    const icon = call.status === "concluído" ? "fa-check" : "fa-phone";
-    const iconColor = call.status === "concluído" ? "#22c55e" : "#4f46e5";
-    const statusClass = call.status === "concluído" ? "completed" : "pending";
+    const statusConfig = TicketModel.getStatusConfig(call.status);
+    const priorityConfig = TicketModel.getPriorityConfig(call.priority);
 
     item.innerHTML = `
       <div class="recent-item-main">
-        <div class="recent-icon" style="background: linear-gradient(180deg, ${iconColor}, ${iconColor});">
-          <i class="fas ${icon}"></i>
+        <div class="recent-icon" style="background: linear-gradient(180deg, ${statusConfig.color}, ${statusConfig.color});">
+          <i class="fas fa-ticket-alt"></i>
         </div>
         <div class="recent-details">
-          <strong>${call.name || "Cliente sem nome"}</strong>
-          <span>${call.problem || "Sem descrição registrada"}</span>
+          <strong>${call.ticketNumber} — ${call.name || "Cliente sem nome"}</strong>
+          <span>${call.subject || call.problem || "Sem descrição registrada"}</span>
         </div>
       </div>
       <div class="recent-meta">
-        <span class="status-pill ${statusClass}">${call.status === "concluído" ? "Concluído" : "Pendente"}</span>
-        <span class="recent-time">${formatDate(call.createdAt)}</span>
+        <span class="status-pill status-${call.status}" style="background:${statusConfig.bg};color:${statusConfig.color};">${statusConfig.icon} ${statusConfig.label}</span>
+        <span class="priority-pill" style="background:${priorityConfig.bg};color:${priorityConfig.color};">${priorityConfig.label}</span>
+        <span class="recent-time">${formatDate(call.updatedAt || call.createdAt)}</span>
       </div>
     `;
 
@@ -330,14 +324,7 @@ function renderRecentCalls(calls) {
 
 function refreshDashboard() {
   const storedCalls = JSON.parse(localStorage.getItem("calls") || "[]");
-  const calls = storedCalls.map((call) => ({
-    ...call,
-    createdAt: call.createdAt || call.date || new Date().toISOString(),
-    completed: Boolean(call.completed),
-    status: call.status || (Boolean(call.completed) ? "concluído" : "pendente"),
-    slaDate: call.slaDate || call.date || null,
-  }));
-
+  const calls = TicketModel.normalizeCalls(storedCalls);
   localStorage.setItem("calls", JSON.stringify(calls));
 
   renderSummary(calls);
@@ -376,20 +363,38 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("callsUpdated", (event) => {
     const detail = event.detail || {};
     const call = detail.call || {};
+    const ticketRef = call.ticketNumber || "Chamado";
 
     if (detail.action === "created") {
       recordNotification({
         type: "success",
         title: "Novo chamado aberto",
-        message: `${call.name || "Um cliente"} abriu um chamado e foi registrado no sistema.`,
+        message: `${ticketRef}: ${call.name || "Um cliente"} abriu um chamado (${TicketModel.getPriorityConfig(call.priority).label}).`,
+      });
+    }
+
+    if (detail.action === "status_changed") {
+      const statusLabel = TicketModel.getStatusConfig(call.status).label;
+      recordNotification({
+        type: "success",
+        title: "Status atualizado",
+        message: `${ticketRef} alterado para "${statusLabel}".`,
+      });
+    }
+
+    if (detail.action === "assigned") {
+      recordNotification({
+        type: "success",
+        title: "Chamado assumido",
+        message: `${call.assignedTo || "Técnico"} assumiu o ${ticketRef}.`,
       });
     }
 
     if (detail.action === "completed") {
       recordNotification({
         type: "success",
-        title: "Chamado concluído",
-        message: `${call.name || "O cliente"} foi marcado como concluído com sucesso.`,
+        title: "Chamado encerrado",
+        message: `${ticketRef} foi marcado como concluído.`,
       });
     }
 
@@ -397,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
       recordNotification({
         type: "warning",
         title: "Chamado removido",
-        message: `${call.name || "Um chamado"} foi removido da lista.`,
+        message: `${ticketRef} foi removido da lista.`,
       });
     }
 
