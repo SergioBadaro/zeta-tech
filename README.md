@@ -1,5 +1,7 @@
 # Zeta Tech — Plataforma Inteligente de Gestão de Chamados
 
+## Link do Deploy da Landing Page: https://zetatechsolutions.netlify.app/
+
 ## 📌 Sobre o projeto
 
 A **Zeta Tech** é uma plataforma moderna de **gestão de chamados, suporte técnico e atendimento corporativo**, desenvolvida com foco em produtividade, organização operacional e experiência do usuário.
