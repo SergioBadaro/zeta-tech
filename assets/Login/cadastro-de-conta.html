@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/login-de-usuario.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="/assets/img/1-1fc355c9.ico" type="image/x-icon">
+
+    <title>Zeta Tech - Cadastre-se</title>
+</head>
+
+<body>
+    <div class="auth-shell">
+        <section class="auth-visual" aria-label="Apresentação da plataforma">
+            <div class="brand-highlight">ZT</div>
+            <p class="eyebrow">Comece agora</p>
+            <h1>Crie sua conta na <span>Zeta Tech</span></h1>
+            <p class="lead">Gerencie chamados, priorize ações e entregue um atendimento mais organizado para sua equipe.
+            </p>
+
+            <ul class="feature-list">
+                <li><span class="feature-icon">✓</span> Cadastro rápido e seguro</li>
+                <li><span class="feature-icon">✓</span> Dados de contato centralizados</li>
+                <li><span class="feature-icon">✓</span> Fluxo prático para acompanhar solicitações</li>
+            </ul>
+
+            <div class="visual-card">
+                <div class="tiny-stat">
+                    <strong>100%</strong>
+                    <span>foco em atendimento</span>
+                </div>
+                <div class="tiny-stat">
+                    <strong>Nova</strong>
+                    <span>experiência visual</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="auth-form-panel" aria-label="Formulário de cadastro">
+            <div class="form-header">
+                <p class="eyebrow">Cadastro</p>
+                <h2>Crie sua conta</h2>
+                <p class="form-copy">Preencha os dados abaixo para começar sua jornada.</p>
+            </div>
+
+            <form id="registerForm">
+                <div class="field-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Digite seu telefone" required>
+                </div>
+
+                <div class="field-group">
+                    <label for="password">Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Criar senha" required>
+                        <button type="button" class="toggle-password" id="togglePassword"
+                            aria-label="Mostrar/ocultar senha">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirme sua senha" required>
+                        <button type="button" class="toggle-password" id="toggleConfirmPassword"
+                            aria-label="Mostrar/ocultar senha">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="password-error" id="passwordError"
+                        style="display: none; color: #e74c3c; font-size: 0.85rem; margin-top: 4px;">As senhas não
+                        conferem</span>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">Aceito os <a href="/assets/politica-termos.html" target="_blank">termos de
+                            política e privacidade</a></label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-button pulse">Criar Conta</button>
+                </div>
+            </form>
+
+            <div class="auth-modal" id="authModal" aria-hidden="true">
+                <div class="auth-modal__overlay" id="authModalOverlay"></div>
+                <div class="auth-modal__content" role="dialog" aria-modal="true" aria-labelledby="authModalTitle"
+                    aria-describedby="authModalMessage">
+                    <button type="button" class="auth-modal__close" id="authModalClose"
+                        aria-label="Fechar aviso">×</button>
+                    <div class="auth-modal__icon" id="authModalIcon">!</div>
+                    <h3 class="auth-modal__title" id="authModalTitle">Aviso</h3>
+                    <p class="auth-modal__message" id="authModalMessage">Mensagem aqui</p>
+                    <button type="button" class="auth-modal__button" id="authModalButton">Fechar</button>
+                </div>
+            </div>
+
+            <p class="register-link">Já tem conta? <a href="/assets/Login/login-de-usuario.html">Faça login</a></p>
+        </section>
+    </div>
+    <div class="page-mask"></div>
+    <div id="toast-container"></div>
+
+    <script src="/js/theme.js" defer></script>
+    <script src="/js/script.js" defer></script>
+    <script src="/js/auth-transition.js" defer></script>
+
+</body>
+
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações | Zeta Tech</title>
+
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/configuracoes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" href="/assets/img/1-1fc355c9.ico" type="image/x-icon">
+</head>
+
+<body>
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="/assets/img/logo - zeta tech.jpg" id="logo_img" alt="Logotipo">
+
+                <p id="user_infos">
+                    <span class="item-description">Zeta Tech</span>
+                    <span class="item-description">Soluções e Tecnologia</span>
+                </p>
+            </div>
+
+            <ul id="side_items">
+                <li class="side-item">
+                    <a href="/assets/index.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="item-description">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/perfil-usuario.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="item-description">Meu Perfil</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/notificacoes.html">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="item-description">Notificações</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/abrir-chamado.html">
+                        <i class="fas fa-phone"></i>
+                        <span class="item-description">Abrir Chamado</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/chamados.html">
+                        <i class="fas fa-headset"></i>
+                        <span class="item-description">Chamados</span>
+                    </a>
+                </li>
+
+                <li class="side-item active">
+                    <a href="/assets/configuracoes.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="item-description">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+
+            <button id="open_btn" type="button">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div id="logout">
+            <button id="logout_btn" type="button">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="item-description">Logout</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="dashboard-shell">
+        <section class="dashboard-header">
+            <div>
+                <p class="dashboard-eyebrow">PAINEL DE PREFERÊNCIAS</p>
+                <h1>Configurações</h1>
+                <p class="dashboard-subtitle">Centralize alertas, comunicação e comportamento da operação do suporte.
+                    Tudo fica salvo localmente no navegador para manter o fluxo do time consistente.</p>
+            </div>
+
+            <div class="header-badges">
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                    <span id="themeLabel">Modo escuro</span>
+                </button>
+                <span class="status-chip live"><i class="fa-solid fa-circle"></i> Salvo no navegador</span>
+                <span class="status-chip soft"><i class="fa-solid fa-sliders"></i> Personalizável</span>
+            </div>
+        </section>
+
+        <section class="settings-overview">
+            <article class="summary-card settings-summary-card">
+                <div class="summary-icon"><i class="fa-solid fa-bell"></i></div>
+                <div>
+                    <p class="summary-label">Alertas ativos</p>
+                    <p class="summary-value" id="alertCount">0</p>
+                </div>
+            </article>
+
+            <article class="summary-card settings-summary-card">
+                <div class="summary-icon"><i class="fa-solid fa-comments"></i></div>
+                <div>
+                    <p class="summary-label">Canal de contato</p>
+                    <p class="summary-value" id="channelValue">WhatsApp</p>
+                </div>
+            </article>
+
+            <article class="summary-card settings-summary-card">
+                <div class="summary-icon"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                    <p class="summary-label">Tempo padrão</p>
+                    <p class="summary-value" id="responseValue">Padrão</p>
+                </div>
+            </article>
+
+            <article class="summary-card settings-summary-card">
+                <div class="summary-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <p class="summary-label">Dados locais</p>
+                    <p class="summary-value" id="privacyValue">Persistindo</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="executive-panel panel" id="executivePanel">
+            <div class="panel-top">
+                <div>
+                    <p class="panel-kicker">EXECUTIVO</p>
+                    <h2>Resumo executivo</h2>
+                </div>
+                <span class="panel-badge soft">Governança operacional</span>
+            </div>
+
+            <div class="executive-summary">
+                <div class="executive-copy">
+                    <p class="executive-lead">A configuração atual coloca o suporte em um padrão de governança mais
+                        previsível, com prioridade em resposta rápida, comunicação consistente e controle de operação.
+                    </p>
+                    <ul class="executive-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Canal principal ativo: <strong
+                                id="executiveChannelValue">WhatsApp</strong>.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Padrão de resposta configurado para <strong
+                                id="executiveResponseValue">Padrão</strong>.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Modo de operação definido como <strong
+                                id="executiveTeamValue">Operação ativa</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="executive-metrics">
+                    <article class="executive-stat-card">
+                        <div class="executive-stat-icon"><i class="fa-solid fa-flag"></i></div>
+                        <p class="executive-stat-label">Prioridade estratégica</p>
+                        <strong id="executivePriorityValue">Operação ativa</strong>
+                        <p class="executive-stat-copy">Fluxo de atendimento alinhado com o esforço do time.</p>
+                    </article>
+
+                    <article class="executive-stat-card">
+                        <div class="executive-stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <p class="executive-stat-label">Ritmo operacional</p>
+                        <strong id="executiveMomentumValue">Ritmo estável</strong>
+                        <p class="executive-stat-copy">Monitoramento contínuo com alerta e resumo diário.</p>
+                    </article>
+
+                    <article class="executive-stat-card">
+                        <div class="executive-stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <p class="executive-stat-label">Risco operacional</p>
+                        <strong id="executiveRiskValue">Risco controlado</strong>
+                        <p class="executive-stat-copy">Dados preservados localmente para decisões mais seguras.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="settings-grid">
+            <article class="settings-panel panel">
+                <div class="panel-top">
+                    <div>
+                        <p class="panel-kicker">ATENDIMENTO</p>
+                        <h2>Alertas e prioridade</h2>
+                    </div>
+                </div>
+
+                <div class="settings-list">
+                    <label class="setting-row" for="slaAlerts">
+                        <div>
+                            <h3>Alertas de SLA</h3>
+                            <p>Receba lembretes quando chamados ficarem próximos do limite de resposta.</p>
+                        </div>
+                        <input type="checkbox" id="slaAlerts">
+                    </label>
+
+                    <label class="setting-row" for="dailySummary">
+                        <div>
+                            <h3>Resumo diário do suporte</h3>
+                            <p>Envia um resumo compacto da operação ao final do dia.</p>
+                        </div>
+                        <input type="checkbox" id="dailySummary">
+                    </label>
+
+                    <label class="setting-row" for="whatsappBanner">
+                        <div>
+                            <h3>Mostrar destaque do WhatsApp</h3>
+                            <p>Exibe um aviso de contato rápido na área do painel.</p>
+                        </div>
+                        <input type="checkbox" id="whatsappBanner">
+                    </label>
+                </div>
+            </article>
+
+            <article class="settings-panel panel">
+                <div class="panel-top">
+                    <div>
+                        <p class="panel-kicker">OPERACIONAL</p>
+                        <h2>Fluxo de trabalho</h2>
+                    </div>
+                </div>
+
+                <div class="settings-list">
+                    <div class="setting-field">
+                        <label for="responseSpeed">Tempo padrão de resposta</label>
+                        <select id="responseSpeed">
+                            <option value="rapido">Rápido</option>
+                            <option value="padrao" selected>Padrão</option>
+                            <option value="equilibrado">Equilibrado</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="contactChannel">Canal principal de contato</label>
+                        <select id="contactChannel">
+                            <option value="Whatsapp">WhatsApp</option>
+                            <option value="Email">Email</option>
+                            <option value="Telefone">Telefone</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-field">
+                        <label for="teamMode">Modo do time</label>
+                        <select id="teamMode">
+                            <option value="operacao">Operação ativa</option>
+                            <option value="atendimento">Atendimento humano</option>
+                            <option value="prioridade">Prioridade máxima</option>
+                        </select>
+                    </div>
+                </div>
+            </article>
+
+            <article class="settings-panel panel">
+                <div class="panel-top">
+                    <div>
+                        <p class="panel-kicker">PRIVACIDADE</p>
+                        <h2>Dados e segurança</h2>
+                    </div>
+                </div>
+
+                <div class="settings-list">
+                    <label class="setting-row" for="persistPreferences">
+                        <div>
+                            <h3>Persistir configurações</h3>
+                            <p>Salva as preferências no navegador para reutilizar em futuras sessões.</p>
+                        </div>
+                        <input type="checkbox" id="persistPreferences" checked>
+                    </label>
+
+                    <label class="setting-row" for="showInsights">
+                        <div>
+                            <h3>Mostrar insights rápidos</h3>
+                            <p>Exibe recomendações curtas no topo do painel.</p>
+                        </div>
+                        <input type="checkbox" id="showInsights" checked>
+                    </label>
+
+                    <div class="setting-actions">
+                        <button class="primary-action" id="saveSettings" type="button">Salvar preferências</button>
+                        <button class="secondary-action" id="resetSettings" type="button">Restaurar padrão</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="settings-footer panel">
+            <div class="panel-top">
+                <div>
+                    <p class="panel-kicker">DIRECIONAMENTO EXECUTIVO</p>
+                    <h2>O que esse painel entrega para a liderança</h2>
+                </div>
+            </div>
+
+            <div class="footer-copy">
+                <p>Esse espaço transforma preferências operacionais em uma visão executiva: centraliza governança,
+                    protege o fluxo de atendimento e deixa a equipe preparada para decisões rápidas sem perder
+                    consistência.</p>
+                <ul>
+                    <li><i class="fa-solid fa-circle-check"></i> Alinha atendimento, prioridades e comunicação em um
+                        mesmo ambiente.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Protege o processo com configuração local e ajustes
+                        reutilizáveis.</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Deixa a operação mais previsível para quem precisa de
+                        visão de resultado.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/theme.js"></script>
+    <script src="/js/configuracoes.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+
+</html>

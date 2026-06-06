@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/abertura-de-chamados.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/assets/img/1-1fc355c9.ico" type="image/x-icon">
+
+    <title> Zeta Tech - Abrir chamado</title>
+</head>
+
+<body>
+    <div class="layout-container">
+        <!-- Menu lateral -->
+        <nav id="sidebar">
+            <div id="sidebar_content">
+                <div id="user">
+                    <img src=# id="logo_img" alt="Logotipo">
+                    <p id="user_infos">
+                        <span class="item-description">Zeta Tech</span>
+                        <span class="item-description">Soluções e Tecnologia</span>
+                    </p>
+                </div>
+                <ul id="side_items">
+                    <li class="side-item">
+                        <a href="/assets/index.html">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span class="item-description">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a href="/assets/perfil-usuario.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="item-description">Meu perfil</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a href="notificacoes.html">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="item-description">Notificações</span>
+                        </a>
+                    </li>
+                    <li class="side-item active">
+                        <a href="/assets/abrir-chamado.html">
+                            <i class="fas fa-phone"></i>
+                            <span class="item-description">Abrir Chamado</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a href="/assets/chamados.html">
+                            <i class="fas fa-headset"></i>
+                            <span class="item-description">Chamados</span>
+                        </a>
+                    </li>
+                    <li class="side-item">
+                        <a href="/assets/configuracoes.html">
+                            <i class="fa-solid fa-gear"></i>
+                            <span class="item-description">Configurações</span>
+                        </a>
+                    </li>
+                </ul>
+                <button id="open_btn">
+                    <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <div id="logout">
+                <button id="logout_btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="item-description">Logout</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="content" id="contentShell">
+            <section class="ticket-shell">
+                <article class="ticket-hero-panel">
+                    <div class="ticket-hero-copy">
+                        <p class="eyebrow">Central de suporte</p>
+                        <h1>Abrir chamado</h1>
+                        <p class="hero-copy">Registre o problema com as informações essenciais para que o time de
+                            suporte possa responder rapidamente.</p>
+                    </div>
+
+                    <div class="ticket-meta-grid">
+                        <div class="meta-pill">
+                            <div class="meta-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                            <div>
+                                <p class="meta-title">Tempo médio</p>
+                                <p class="meta-value">Até 4 horas úteis</p>
+                            </div>
+                        </div>
+
+                        <div class="meta-pill">
+                            <div class="meta-icon"><i class="fa-solid fa-headset"></i></div>
+                            <div>
+                                <p class="meta-title">Canal ativo</p>
+                                <p class="meta-value">Suporte corporativo</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <section class="ticket-layout">
+                    <article class="ticket-form-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="eyebrow">Novo atendimento</p>
+                                <h2>Informações do chamado</h2>
+                            </div>
+                            <p class="panel-copy">Preencha apenas o que é necessário para classificar e encaminhar o
+                                atendimento.</p>
+                        </div>
+
+                        <form id="callForm" class="ticket-form-grid">
+                            <div class="form-field">
+                                <label for="name">Nome completo</label>
+                                <input type="text" id="name" name="name" autocomplete="name"
+                                    placeholder="Digite seu nome" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" autocomplete="email"
+                                    placeholder="Digite seu e-mail" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="phone">Telefone</label>
+                                <input type="tel" id="phone" name="phone" autocomplete="tel"
+                                    placeholder="Digite seu telefone" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="category">Categoria</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Infraestrutura">Infraestrutura</option>
+                                    <option value="Acesso e login">Acesso e login</option>
+                                    <option value="Software">Software</option>
+                                    <option value="Atendimento">Atendimento</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="priority">Prioridade</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Baixa">Baixa</option>
+                                    <option value="Média">Média</option>
+                                    <option value="Alta">Alta</option>
+                                    <option value="Crítica">Crítica</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field full-width">
+                                <label for="subject">Assunto</label>
+                                <input type="text" id="subject" name="subject"
+                                    placeholder="Ex.: Falha no acesso ao sistema" required>
+                            </div>
+
+                            <div class="form-field full-width">
+                                <label for="problem">Descrição do problema</label>
+                                <textarea id="problem" name="problem" rows="6"
+                                    placeholder="Descreva o ocorrido, impacto e passos já realizados"
+                                    required></textarea>
+                            </div>
+
+                            <input type="hidden" id="date" name="date">
+
+                            <div class="form-actions full-width">
+                                <button type="submit" class="primary-submit">Salvar chamado</button>
+                            </div>
+                        </form>
+                    </article>
+
+                    <aside class="ticket-guidance-panel">
+                        <div class="guidance-header">
+                            <p class="eyebrow">O que acontece agora</p>
+                            <h2>Fluxo de atendimento</h2>
+                        </div>
+
+                        <ul class="guidance-list">
+                            <li>
+                                <div class="guidance-bullet">1</div>
+                                <div>
+                                    <h3>Classificação</h3>
+                                    <p>Categoria e prioridade definem o nível de urgência do suporte.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="guidance-bullet">2</div>
+                                <div>
+                                    <h3>Encaminhamento</h3>
+                                    <p>O chamado entra na fila da equipe responsável e recebe SLA.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="guidance-bullet">3</div>
+                                <div>
+                                    <h3>Resposta</h3>
+                                    <p>O atendimento segue com atualização de status em tempo real.</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="guidance-note">
+                            <h3>Boa prática</h3>
+                            <p>Inclua impacto, horário do erro e qualquer erro exibido para acelerar a análise.</p>
+                        </div>
+                    </aside>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>Chamado salvo com sucesso!</h3>
+            <div class="modal-buttons">
+                <button id="newCallModalBtn" onclick="window.location.href='/assets/abrir-chamado.html'">Abrir Novo
+                    Chamado</button>
+                <button id="goToViewCallsBtn" onclick="window.location.href='/assets/chamados.html'">
+                    Conferir Chamados
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/theme.js"></script>
+    <script src="/js/abrir-chamado.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+
+</html>

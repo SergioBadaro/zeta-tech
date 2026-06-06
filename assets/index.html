@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/assets/img/1-1fc355c9.ico" type="image/x-icon">
+
+    <title>Zeta Tech - Dashboard</title>
+</head>
+
+<body>
+    <nav id="sidebar">
+        <div id="sidebar_content">
+            <div id="user">
+                <img src="/assets/img/logo - zeta tech.jpg" id="logo_img" alt="Logotipo">
+
+                <p id="user_infos">
+                    <span class="item-description">Zeta Tech</span>
+                    <span class="item-description">Soluções e Tecnologia</span>
+                </p>
+            </div>
+
+            <ul id="side_items">
+                <li class="side-item active">
+                    <a href="/assets/index.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="item-description">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/perfil-usuario.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="item-description">Meu Perfil</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="notificacoes.html">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="item-description">Notificações</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/abrir-chamado.html">
+                        <i class="fas fa-phone"></i>
+                        <span class="item-description">Abrir Chamado</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/chamados.html">
+                        <i class="fas fa-headset"></i>
+                        <span class="item-description">Chamados</span>
+                    </a>
+                </li>
+
+                <li class="side-item">
+                    <a href="/assets/configuracoes.html">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="item-description">Configurações</span>
+                    </a>
+                </li>
+            </ul>
+
+            <button id="open_btn">
+                <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div id="logout">
+            <button id="logout_btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="item-description">Logout</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="dashboard-shell">
+        <section class="dashboard-header">
+            <div>
+                <p class="dashboard-eyebrow">Centro de Operaçoes</p>
+                <h1>Dashboard de suporte</h1>
+                <p class="dashboard-subtitle">Acompanhe a saúde dos chamados, identifique gargalos e fique por dentro
+                    das atualizações da equipe.</p>
+            </div>
+
+            <div class="header-badges">
+                <span class="status-chip live"><i class="fas fa-circle"></i> Operação em tempo real</span>
+                <span class="status-chip soft">Atualizado agora</span>
+            </div>
+        </section>
+
+        <section class="summary-grid" id="summaryGrid"></section>
+
+        <section class="dashboard-grid">
+            <article class="panel panel-wide">
+                <div class="panel-top">
+                    <div>
+                        <p class="panel-kicker">Visão geral</p>
+                        <h2>Resumo da operação</h2>
+                    </div>
+                    <span class="panel-badge">${{valor}} taxa de encerramento</span>
+                </div>
+
+                <div class="overview-stats">
+                    <div class="completion-ring" id="completionRing">
+                        <div class="completion-ring-inner">
+                            <strong id="completionValue">0%</strong>
+                            <span>encerrados</span>
+                        </div>
+                    </div>
+
+                    <div class="overview-list" id="overviewList"></div>
+                </div>
+
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <div>
+                            <p class="panel-kicker">Tendência semanal</p>
+                            <h3>Chamados criados por dia</h3>
+                        </div>
+                        <span class="panel-small">Últimos 7 dias</span>
+                    </div>
+                    <div class="bars-chart" id="trendBars"></div>
+                </div>
+            </article>
+
+            <article class="panel panel-side">
+                <div class="panel-top">
+                    <div>
+                        <p class="panel-kicker">Chamados recentes</p>
+                        <h2>Atividade em destaque</h2>
+                    </div>
+                    <a class="panel-link" href="/assets/chamados.html">Ver todos</a>
+                </div>
+
+                <div class="recent-list" id="recentCalls"></div>
+            </article>
+        </section>
+
+        <section class="dashboard-grid lower-grid">
+            <article class="panel panel-wide">
+                <div class="panel-top">
+                    <div>
+                        <p class="panel-kicker">Fluxo de status</p>
+                        <h2>Distribuição por etapa</h2>
+                    </div>
+                    <span class="panel-badge soft">Ajustado ao armazenamento local</span>
+                </div>
+
+                <div class="status-bars" id="statusBars"></div>
+            </article>
+
+            <article class="panel panel-side notifications-panel">
+                <div class="panel-top">
+                    <div>
+                        <p class="panel-kicker">Notificações</p>
+                        <h2>Sistema de alertas</h2>
+                    </div>
+                    <div class="panel-actions">
+                        <a href="notificacoes.html" class="panel-link">Ver todas</a>
+                        <button class="clear-btn" id="clearNotifications" type="button">Limpar</button>
+                    </div>
+                </div>
+
+                <div class="notifications-list" id="notificationList"></div>
+            </article>
+        </section>
+    </main>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/js/theme.js"></script>
+    <script src="/js/principal.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+
+</html>

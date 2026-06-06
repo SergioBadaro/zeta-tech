@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZetaTech - Notificações</title>
+  <link rel="stylesheet" href="/css/theme.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+  <link rel="stylesheet" href="/css/notificacoes.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <nav id="sidebar">
+    <div id="sidebar_content">
+      <div id="user">
+        <img src="/assets/img/logo - zeta tech.jpg" id="logo_img" alt="Logotipo" />
+        <p id="user_infos">
+          <span class="item-description">Zeta Tech</span>
+          <span class="item-description">Soluções e Tecnologia</span>
+        </p>
+      </div>
+
+      <ul id="side_items">
+        <li class="side-item">
+          <a href="/assets/index.html">
+            <i class="fa-solid fa-chart-line"></i>
+            <span class="item-description">Dashboard</span>
+          </a>
+        </li>
+
+        <li class="side-item">
+          <a href="/assets/perfil-usuario.html">
+            <i class="fa-solid fa-user"></i>
+            <span class="item-description">Meu Perfil</span>
+          </a>
+        </li>
+
+        <li class="side-item active">
+          <a href="/assets/notificacoes.html">
+            <i class="fa-solid fa-bell"></i>
+            <span class="item-description">Notificações</span>
+          </a>
+        </li>
+
+        <li class="side-item">
+          <a href="/assets/abrir-chamado.html">
+            <i class="fas fa-phone"></i>
+            <span class="item-description">Abrir Chamado</span>
+          </a>
+        </li>
+
+        <li class="side-item">
+          <a href="/assets/chamados.html">
+            <i class="fas fa-headset"></i>
+            <span class="item-description">Chamados</span>
+          </a>
+        </li>
+
+        <li class="side-item">
+          <a href="/assets/configuracoes.html">
+            <i class="fa-solid fa-gear"></i>
+            <span class="item-description">Configurações</span>
+          </a>
+        </li>
+      </ul>
+
+      <button id="open_btn" type="button">
+        <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div id="logout">
+      <button id="logout_btn" type="button">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span class="item-description">Logout</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="dashboard-shell">
+    <section class="hero-panel">
+      <div class="hero-copy">
+        <div class="eyebrow">CENTRAL DE ALERTAS</div>
+        <h1>Notificações do suporte</h1>
+        <p>Histórico das mudanças, concluições e alertas críticos do seu time de atendimento.</p>
+      </div>
+
+      <div class="hero-actions">
+        <a class="back-link" href="/assets/index.html"><i class="fas fa-arrow-left"></i> Voltar ao dashboard</a>
+        <button class="clear-all-btn" id="clearAllButton" type="button">Limpar tudo</button>
+      </div>
+    </section>
+
+    <section class="summary-panel">
+      <div class="summary-card accent">
+        <div>
+          <p class="summary-label">Total de alertas</p>
+          <h2 id="totalCount">0</h2>
+        </div>
+        <i class="fas fa-bell"></i>
+      </div>
+
+      <div class="summary-card">
+        <div>
+          <p class="summary-label">Última atualização</p>
+          <h2 id="lastUpdate">Agora</h2>
+        </div>
+        <i class="fas fa-clock"></i>
+      </div>
+
+      <div class="summary-card muted">
+        <div>
+          <p class="summary-label">Status</p>
+          <h2 id="statusSummary">Em dia</h2>
+        </div>
+        <i class="fas fa-check-circle"></i>
+      </div>
+    </section>
+
+    <section class="notifications-panel">
+      <div class="panel-header">
+        <div>
+          <p class="panel-kicker">Histórico</p>
+          <h2>Alertas recentes</h2>
+        </div>
+        <span class="panel-badge" id="panelBadge">0 itens</span>
+      </div>
+
+      <div class="notification-list" id="notificationList"></div>
+    </section>
+  </main>
+
+  <script src="/js/theme.js"></script>
+  <script src="/js/notificacoes.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+
+</html>
