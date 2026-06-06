@@ -1,108 +1,257 @@
-# Zeta Tech
+# Zeta Tech — Plataforma Inteligente de Gestão de Chamados
 
-## Visão geral
-A **Zeta Tech** é uma solução web voltada para **gestão de chamados e suporte técnico**, com uma forte presença institucional na parte pública e um fluxo interno para abertura, acompanhamento e administração de tickets.
+## 📌 Sobre o projeto
 
-O projeto combina uma **landing page de vendas/branding** com uma **plataforma de suporte** baseada em páginas estáticas, permitindo que o usuário navegue por:
-- apresentação da empresa e serviços;
-- cadastro e login;
-- dashboard com indicadores;
-- abertura de chamados;
-- visualização e conclusão de chamados;
-- edição de perfil.
+A **Zeta Tech** é uma plataforma moderna de **gestão de chamados, suporte técnico e atendimento corporativo**, desenvolvida com foco em produtividade, organização operacional e experiência do usuário.
 
-## Objetivo da ferramenta
-O objetivo da ferramenta é centralizar o processo de atendimento e suporte em um ambiente simples e visualmente organizado, permitindo que empresas e equipes:
-- capturem solicitações de suporte;
-- registrem chamados com dados do cliente e descrição do problema;
-- acompanhem o status dos tickets;
-- tenham um painel com métricas de atendimento;
-- ofereçam um canal de contato com a marca.
+O sistema foi criado para empresas que desejam centralizar solicitações de suporte em um ambiente visual, intuitivo e eficiente, permitindo acompanhar tickets em tempo real, gerenciar atendimentos e organizar demandas técnicas de forma profissional.
 
-Em resumo, a plataforma funciona como um **portal de suporte e gestão de tickets** com interface moderna e foco em experiência do usuário.
+Além da aplicação principal, o projeto também conta com uma **landing page institucional**, fortalecendo a presença digital da marca e apresentando os serviços da empresa de forma moderna e responsiva.
 
-## Tecnologias utilizadas
-- **HTML5**: estrutura das páginas e conteúdo semântico.
-- **CSS3**: estilização, layout responsivo, cards, sidebar, botões, animações e temas.
-- **JavaScript puro (Vanilla JS)**: interações, validações, manipulação do DOM, armazenamento em `localStorage`, abertura/fechamento de accordions e renderização dinâmica.
-- **Font Awesome**: ícones de interface.
-- **Google Fonts (Poppins)**: tipografia.
-- **LocalStorage**: persistência de chamados no navegador.
+---
 
-## Estrutura do projeto
+# 🚀 Objetivo da plataforma
 
-### Pastas
-- `assets/` — páginas HTML da aplicação (landing, dashboard, abertura de chamados, chamados, perfil, políticas e autenticação).
-- `css/` — arquivos de estilo organizados por tela.
-- `js/` — scripts de comportamento e integração com o navegador.
-- `assets/img/` — imagens, logo e ícones.
+A proposta da Zeta Tech é transformar o processo de atendimento técnico em uma experiência organizada e inteligente, permitindo que equipes:
 
-### Arquivos principais
-- `assets/home.html` — landing page institucional com hero, serviços, diferenciais, FAQ e botão de WhatsApp.
-- `assets/index.html` — dashboard principal com cards estatísticos.
-- `assets/abrir-chamado.html` — formulário para criação de chamados.
-- `assets/chamados.html` — listagem e gerenciamento dos chamados abertos.
-- `assets/perfil-usuario.html` — edição de perfil.
-- `assets/Login/login-de-usuario.html` — tela de login.
-- `assets/Login/cadastro-de-conta.html` — tela de cadastro.
-- `assets/politica-termos.html` — política de privacidade e termos.
+* registrem chamados rapidamente;
+* acompanhem solicitações em tempo real;
+* organizem tickets por prioridade e status;
+* visualizem métricas operacionais;
+* mantenham histórico de atendimentos;
+* centralizem o relacionamento com clientes;
+* aumentem a produtividade da equipe de suporte.
 
-### JavaScript
-- `js/home.js` — animações de entrada, typewriter, FAQ e formulário de contato.
-- `js/abrir-chamado.js` — criação e persistência de chamados no `localStorage`.
-- `js/chamados-abertos.js` — renderização, conclusão e exclusão de chamados.
-- `js/principal.js` — dashboard e lógica de logout.
-- `js/perfil-usuario.js` — salvamento de alterações e troca de foto (placeholder).
-- `js/script.js` — scripts auxiliares de cadastro/login.
+---
 
-## Fluxo da aplicação
-1. **Landing page pública**: apresenta marca, serviços, FAQ e botão para contato.
-2. **Autenticação**: login e cadastro direcionam o usuário para a área interna.
-3. **Dashboard**: mostra métricas de desempenho dos chamados.
-4. **Abertura de chamado**: usuário registra problemas e a solução gera um ticket localmente.
-5. **Chamados**: lista os tickets, permite concluir ou deletar.
-6. **Perfil**: permite atualizar informações do usuário.
+# 🖥️ Funcionalidades implementadas
 
-## Funcionalidades implementadas
-- Layout responsivo.
-- Hero com efeito de digitação.
-- Seção de serviços e diferenciais.
-- FAQ expansível.
-- Formulário de contato.
-- Botão fixo de WhatsApp.
-- Barra lateral com navegação.
-- Criação e armazenamento de chamados.
-- Listagem de chamados com ações de concluir e excluir.
-- Dashboard com cartões de métricas.
-- Tela de perfil com upload real de foto salva no navegador.
-- Busca e filtros de chamados por texto e status.
-- Tela de perfil e mensagens de sucesso.
+## 🌐 Landing Page Institucional
 
-## Como executar localmente
-Como a aplicação é estática, o ideal é servir os arquivos por um servidor local simples.
+* Hero section moderna;
+* Efeito typewriter;
+* FAQ interativo;
+* Seção de serviços;
+* Cards de diferenciais;
+* Botão flutuante de WhatsApp;
+* Design responsivo;
+* Animações suaves;
+* Sessão de contato.
 
-### Opção 1 — Python HTTP Server
-Na pasta raiz do projeto, execute:
+---
+
+## 🔐 Sistema de autenticação
+
+* Tela de login;
+* Cadastro de usuários;
+* Validação de senha;
+* Interface responsiva;
+* Feedback visual de erros e sucesso;
+* Navegação protegida.
+
+---
+
+## 📊 Dashboard Administrativa
+
+* Cards estatísticos;
+* Indicadores de chamados;
+* Interface moderna;
+* Sidebar de navegação;
+* Estrutura preparada para métricas em tempo real.
+
+---
+
+## 🎫 Gestão de chamados
+
+* Abertura de tickets;
+* Registro de problemas do cliente;
+* Listagem dinâmica de chamados;
+* Conclusão de chamados;
+* Exclusão de tickets;
+* Busca de chamados;
+* Filtro por status;
+* Persistência de dados no navegador.
+
+---
+
+## 👤 Perfil do usuário
+
+* Atualização de informações pessoais;
+* Upload de foto de perfil;
+* Salvamento local de dados;
+* Interface moderna e intuitiva.
+
+---
+
+# 🛠️ Tecnologias utilizadas
+
+## Front-end
+
+* HTML5
+* CSS3
+* JavaScript (Vanilla JS)
+* Font Awesome
+* Google Fonts
+
+---
+
+## Back-end (em evolução)
+
+* Node.JS
+* Express
+* JWT Authentication
+* MySQL
+* API REST
+
+---
+
+## Ferramentas e integrações
+
+* Git & GitHub
+* LocalStorage
+---
+
+# 📁 Estrutura do projeto
 
 ```bash
-python -m http.server 8000
+Zeta-Tech/
+│
+├── assets/
+│   ├── home.html
+│   ├── index.html
+│   ├── abrir-chamado.html
+│   ├── chamados.html
+│   ├── perfil-usuario.html
+│   └── Login/
+│
+├── css/
+│
+├── js/
+│
+├── src/                # Estrutura Javascript
+│
+├── backend/            # API Node.JS
+│
+├── database/
+│
+└── README.md
 ```
 
-Depois acesse:
-- `http://localhost:8000/assets/home.html` para a landing page.
-- `http://localhost:8000/assets/index.html` para o dashboard.
+---
 
-### Opção 2 — Abrir arquivos diretamente
-Também é possível abrir as páginas em um navegador, porém isso pode causar problemas com os caminhos absolutos (`/css/...`, `/js/...`). Por isso, o uso de servidor local é recomendado.
+# ⚙️ Fluxo da aplicação
 
-## Observações importantes
-- Os dados de chamados são persistidos em `localStorage`, então podem ser visualizados entre recarregamentos do navegador.
-- O projeto está no formato **front-end puro**, sem dependências de build ou framework.
-- Algumas áreas ainda podem ser aprimoradas, como padronização de dados no dashboard e integração real com backend.
+## 1️⃣ Landing Page
 
-## Próximos passos sugeridos
-- integrar autenticação real com backend;
-- conectar a aplicação a um banco de dados ou API;
-- padronizar o armazenamento de chamados com status e datas consistentes;
-- adicionar upload real de foto de perfil;
-- implementar filtros e buscas nos chamados.
+O usuário acessa a página institucional da empresa, conhece os serviços e pode entrar em contato diretamente.
+
+## 2️⃣ Autenticação
+
+O usuário cria sua conta ou realiza login para acessar o sistema interno.
+
+## 3️⃣ Dashboard
+
+Após autenticação, o usuário visualiza métricas e atalhos rápidos da plataforma.
+
+## 4️⃣ Abertura de Chamados
+
+Os tickets podem ser criados com descrição do problema e informações do cliente.
+
+## 5️⃣ Gerenciamento
+
+Os chamados podem ser:
+
+* visualizados;
+* pesquisados;
+* filtrados;
+* concluídos;
+* removidos.
+
+## 6️⃣ Perfil
+
+O usuário pode atualizar suas informações e personalizar seu perfil.
+
+---
+
+# 🎨 Design e experiência do usuário
+
+A interface da Zeta Tech foi construída com foco em:
+
+* responsividade;
+* experiência moderna;
+* usabilidade intuitiva;
+* acessibilidade visual;
+* identidade visual tecnológica;
+* navegação fluida.
+
+A paleta principal utiliza tons de:
+
+* azul tecnológico;
+* cinza gelo;
+* branco;
+* elementos minimalistas.
+
+---
+
+# 🔒 Segurança (planejamento)
+
+A próxima versão da plataforma contará com:
+
+* autenticação JWT;
+* criptografia de senhas;
+* proteção de rotas;
+* controle de permissões;
+* persistência em banco de dados;
+* armazenamento seguro de sessões.
+
+---
+
+# 📈 Melhorias futuras
+
+## Roadmap da plataforma
+
+
+* Banco de dados MySQL;
+* Sistema de prioridades;
+* SLA de atendimento;
+* Histórico detalhado de tickets;
+* Notificações em tempo real;
+* Sistema de comentários internos;
+* Upload de anexos;
+* Dashboard analítica;
+* Relatórios avançados;
+* Tema dark mode;
+* Integração com WhatsApp;
+* Sistema multiusuário;
+* Controle de permissões;
+* Deploy em nuvem;
+* API pública.
+
+---
+
+# 🌎 Deploy
+
+O projeto está sendo preparado para deploy profissional utilizando:
+
+* Netlify
+* GitHub
+
+---
+
+# 📌 Status do projeto
+
+🚧 Projeto em desenvolvimento contínuo.
+
+A Zeta Tech está evoluindo para se tornar uma solução completa de gerenciamento de suporte corporativo, com foco em performance, escalabilidade e experiência do usuário.
+
+---
+
+# 👨‍💻 Desenvolvedor
+
+Projeto desenvolvido por **Sérgio Badaró**.
+
+---
+
+# 📄 Licença
+
+Este projeto está sob a licença MIT.
