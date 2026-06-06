@@ -1,6 +1,7 @@
 # Zeta Tech — Plataforma Inteligente de Gestão de Chamados
 
-### Link do Deploy da Landing Page: https://zetatechsolutions.netlify.app/
+### Link do Deploy da Landing Page: <a href="https://zetatechsolutions.netlify.app" target="_blank">Zeta Tech - Solutions</a>
+
 
 ## 📌 Sobre o projeto
 
